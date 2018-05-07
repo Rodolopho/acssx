@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AliacssX</title>
+</head>
+<body>
+<div class="fs13px m12px">
+	<div id="hello" class=" dn bgc_nolive w200px h200px pf " srtyle="background:#e98e98; width:200px;height:200px;position:fixed" ></div>
+	<h1 class="c_nred fs13px bgc_nred"></h1>
+	<p class="b1pxs_c_nolive" id="ied">
+		Lorem espond PsSome Tokahis Homal IKulins Tmandhi ei
+	</p>
+</div>
+<!-- <div id="alias-css-live-editor" class="bgc_hfff w200px h200px b1px_s_c_00000000002 br5px pa">\ 
+	<div id="alias-css-live-editorheader" class="bgc_hccc h20px bb1px_s_c_00000000002 h_cm">\
+		<span class="fs12px m0px5px ff_arial">Acss Live Update 1.2</span>\
+		<div class="dib fr m0p5px">\
+			<button class="br0px bgc_heee fw9 ">-</button>\
+			<button class="br0px bgc_heee fw9 c_nred">&times;</button>\
+		</div>\
+	</div>\
+	<div class="bgc_heee h157px bb1px_s_c_00000000002 tac">\
+		<p class="fs13px m0px p3px">\
+			Click element -or-<input type="text" style="" id="quickChangeIdInput" class="ddont-include w85px" placeholder="input id of element">
+		</p>\
+		 <hr class=" m4px0px">\
+		<div class="tal ">\
+			<small id=""class="ff_arial fs11px tac">Input Aliascss classnames, press enter</small>
+			    <textarea ied="quickChangeAcssInput" class="dib  h80px w195px oln" placeholder="Input ACSS class names " > </textarea>\
+		</div>\
+	</div>\
+	<div  id="" class="bgc_hccc h20px bb1px_s_c_00000000002 ">\
+		<div id="selectOption" class="dont-include dib fs11px m0px5px"> 
+		        <button class="br0px fbgc_heee" type="" class="dont-include" id="buttonPrev">Prev</button>\
+		        <button class="br0px fbgc_heee" type="" class="dont-include" id="buttonNext">Next</button>\
+		        <button class="br0px fbgc_heee" type="" class="dont-include" id="buttonParent">Parent</button>\
+		        <button class="br0px fbgc_heee" type="" class="dont-include" id="buttonChild">Child</button>\
+		</div>\
+	</div>\
+</div>\ -->
+
+
+<script>
+
+//dragElement(document.getElementById(("alias-css-live-editor")));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+
+
+</body>
+<script type="text/javascript">
+	var el=document.getElementById("hello");
+	el.onmousedown=function(e){
+		console.log(e);
+		el.style.right=el.style.right+e.clientY;
+	}
+</script>
+<script type="text/javascript" src="dist/acss.js"></script>
+</html>
