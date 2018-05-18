@@ -3,9 +3,9 @@
 
 	//Property Alias Object
 
-		"an":"animation",
-		"adl":"animation-delay",
-		"adu":"animation-duration",
+		"an":"animation",//-------------
+		"adl":"animation-delay",//----------------
+		"adu":"animation-duration",//-------------
 		"aic":"animation-iteration-count",
 		//"an":"animation-name",
 		"atf":"animation-timimg-function",//atfcb0d1-0d7-1-0d1=animation-timimg-function:cubic-bezeir(0.1,0.7,1,0.1) for negative value use -- or _-1d5//
@@ -16,15 +16,15 @@
 		"bbrr": "border-bottom-right-radius",
 		"bbw"  :"border-bottom-width",
 		"bc" :"border-color",
-		"bg"  :"background",
-		"bgc"  :"background-color",
-		"bgi"  :"background-image",
-		"bgp"  :"background-position",
-		"bgs":"background-size",
+		"bg"  :"background",//-------
+		"bgc"  :"background-color",//-----------
+		"bgi"  :"background-image",//----------
+		"bgp"  :"background-position",//----------
+		"bgs":"background-size",//-----------
 		"bl"  :"border-left",
 		"blc"  :"border-left-color",
-		"brt"  :"border-right",
-		"brc"  :"border-right-color",
+		"brt"  :"border-right",//--------------
+		"brc"  :"border-right-color",//---------------
 		"br"  :"border-radius",
 		"brw"  :"border-right-width",
 		"bs"  :"border-spacing",
@@ -40,11 +40,11 @@
 		"cc":"column-count",
 		"cg":"column-gap",
 		"ci"  :"counter-increment",
-		"cols":"columns",
-		"con"  :"content",//string
-		"cp"  :"clip",
-		"cr"   :"counter-reset",
-		"cr":"column-rule",
+		"cols":"columns",//------------
+		"con"  :"content",//string//------------
+		"cp"  :"clip",//-----------
+		"cr"   :"counter-reset",//----------
+		"cr2":"column-rule",//-----------
 		"crc":"column-rule-color",
 		"crw":"column-rule-width",
 		//"c"  :"cursor",
@@ -54,9 +54,9 @@
 		"fb":"flex-basis",
 		"ff"  :"font-family",
 		"fg":"flex-grow",
-		"fl":"filter",
+		"fl":"filter",//--------------
 		"fs"  :"font-size",
-		"fsk":"flex-shrink",
+		"fsk":"flex-shrink",//--------------
 		"fsa":"font-size-adjust",
 		"h":"height",
 		"i":"icon",
@@ -64,7 +64,7 @@
 		"ir":"image-resolution",
 		"key":"@keyframes",
 		"l"  :"left",
-		"les"  :"letter-spacing",
+		"les"  :"letter-spacing",//--------
 		"lh"  :"line-height",
 		"ls"  :"list-style",
 		"lsi"  :"list-style-image",
@@ -77,17 +77,17 @@
 		"mr"  :"margin-right",
 		"mt"  :"margin-top",
 		"mw"  :"min-width",
-		"ord":"order",
-		"ol"  :"outline",
-		"olc"  :"outline-color",
-		"olo":"outline-offset",
-		"olw"  :"outline-width",
-		"op":"object-position",
+		"ord":"order",//-------
+		"ol"  :"outline",//-------
+		"olc"  :"outline-color",//-----
+		"olo":"outline-offset",//---------
+		"olw"  :"outline-width",//--------
+		"op":"object-position",//-----------
 		"o":"opacity",
-		"orp":"orphans",
+		"orp":"orphans",//------
 		"p"  :"padding",
 		"pb"  :"padding-bottom",
-		"pers":"perspective",
+		"pers":"perspective",//--------
 		"perso":"perspective-origin",
 		"pl"  :"padding-left",
 		"pr"  :"padding-right",
@@ -95,11 +95,11 @@
 		"q"    :"quotes",//string
 		"r"  :"right",
 		"t"  :"top",
-		"t_": "transition",
-		"tdl":"transition-delay",
-		"tdu":"transition-duration",
-		"tf":"transform",
-		"tfo":"transform-origin",
+		"t_": "transition",//---------
+		"tdl":"transition-delay",//---
+		"tdu":"transition-duration",//-----
+		"tf":"transform",//----
+		"tfo":"transform-origin",//--------
 		"ts":"tab-size",
 		"ttf":"transition-timing-function",
 		"ta":"text-align",//string
@@ -108,12 +108,12 @@
 		"tec":"text-emphasis-color",
 		"ti" : "text-indent",
 		"to":"text-overflow",//string
-		"txs" :"text-shadow",
+		"txs" :"text-shadow",//-----------
 		"va":"vertical-align"	,
 		"w" :"width",
 		"ws":"word-spacing",
-		"xh"  :"max-height",
-		"xw"  :"max-width",
+		"xh"  :"max-height",//------
+		"xw"  :"max-width",//----------------
 		"zi":"z-index",
 		
 

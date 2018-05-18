@@ -100,7 +100,8 @@ bbwt2:"border-bottom-width: thin",//------------
 bc_t:"border-color: transparent",
 bct:"border-color: transparent",
 bcin:"border-color: inherit",
-bcn2:"border-color: inherit",
+bci:"border-color: inherit",
+bci2:"border-color: initial",//--------
 bc_in:"border-color: inherit",
 bcn:"border-color:none",
 bcc:"border-collapse: collapse",

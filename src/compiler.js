@@ -634,30 +634,30 @@ matchAndCall:{
 			//------------------Follow the order-handleElement->handledevice->handle->pseduo---------------
 //-------------------------------handleElemnts
 		eachClass=this.handleElements(eachClass);
-//return classname
+		//returns classname
 
 
 //------------------------------handle device
 		eachClass=this.handleDevice(eachClass);
-
-//return classname
+		//returns classname
 
 	
 //----------------------------pesudo handler
 		eachClass=this.handlePseduo(eachClass);
-
-//return classname
+		//return classname
 
 //At this point we have
 		//return [eachClass, this.hasElements,this.hasDevice, this.hasPseduo];
-//---------------------------------static className Handeler--------------------------------
+
+
+//Case 1: Static Classname defination---------------------------------static className Handeler--------------------------------
 					if(staticClassNames.hasOwnProperty(eachClass)){
 					//console.log("ststic:"+eachClass);
 					 propertyNValue=staticClassNames[eachClass];
 					
 					}else{
 
-//-----------------------------------------------------------------------------------------------------------------
+//Case 2: Dynamic Classname Defination-----------------------------------------------------------------------------------------------------------------
 					for (key in compiler.matchAndCall){
 						if(eachClass.match(compiler.matchAndCall[key].match)){
 							var result=compiler.matchAndCall[key].callFunction(eachClass);

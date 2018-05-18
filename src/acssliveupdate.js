@@ -233,7 +233,7 @@ var oldElement="";
 	}
 };
 document.getElementById("quickChangeClose").onclick=function(){
-	if (confirm('Are you sure you want to close Acss Live Editor?\n You can reopen by typeing openAcssLiveEditor(); in console')) {
+	if (confirm('Are you sure you want to close Acss Live Editor?\n You can reopen by typing openAcssLiveEditor(); in console')) {
     // Save it!
     var ele=document.getElementById("quickChangeBox");
     ele.parentNode.removeChild(ele);
@@ -254,7 +254,7 @@ document.getElementById("quickChangeClose").onclick=function(){
 
 // --------------------------------HTML Display-----------------------------
 function launchQuickChange(){
-var newinnerHTML=' <div sid="alias-css-live-editor" id="quickChangeBox" class="dont-include zi1111111111 _input_lhi2 _button_lhi2 ffi2 fs12px bgc_hfff w200px h200px b1px_s_c_00000000002 br5px r5px btm5px pf">\
+var newinnerHTML=' <div sid="alias-css-live-editor" id="quickChangeBox" class="dont-include zi1111111111 bxs0px0px5px2pxc_00000000005 _input_lhi2 _button_lhi2 ffi2 fs12px bgc_hfff w200px h200px b1px_s_c_00000000002 br5px r5px btm5px pf">\
     <div sid="alias-css-live-editorheader" id="quickChangeBoxheader" class="bgc_hccc h20px bb1px_s_c_00000000002 h_cm dont-include">\
         <span class="fs12px m0px5px ff_arial dont-include">Acss Live Update 1.2</span>\
         <div class="dib fr m0p5px dont-include">\

@@ -1,4 +1,0 @@
-If classname is not define in static then its dynamic , treat it as dynamci
-accsv 
-var a="br5 br1px brn22",
-var b=a-"br5px";
