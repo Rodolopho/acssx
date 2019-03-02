@@ -1,14 +1,17 @@
- const compiler=require("./compiler.js");
+ //const compiler=require("./compiler.js");
  const ACSSMediaQuery=require("../extension/mediaquery");
  const ACSSClone=require("../extension/clone");
+ const statementMaker=require("./statementMaker");
 // -------------------------------------------printer
 //view
-window.compiler=compiler;
- var unValidACSSClassNames=[];
- 
+window.compiler=statementMaker;
+ window.unValidACSSClassNames=[];
  var classPrinter={
  	//classlist to avoid repetation
  	classListAll:[],
+
+ 	//property an d value for acss stylesheet compiler
+ 	propertyNValueList:{},
  	tagStyleExists:false,
  	styleTagHolder:null,
 	//create DOM style tag to hold the class printed
@@ -31,6 +34,15 @@ window.compiler=compiler;
 	main:function(element){
 		//checking of class existance
 		if(element.hasAttribute("class")){
+			//Has a group
+			if(element.getAttribute('acss')){
+				var result=statementMaker.gp(element.getAttribute('acss'),element.getAttribute("class").trim());
+				if(result){
+						classPrinter.appendToStyleTag(result);
+						// return true;
+					}
+				}
+
 			//get class and trim out whitespaces
 			var tmpClassList=element.getAttribute("class").trim();
 			//make array of classname out of string
@@ -45,7 +57,9 @@ window.compiler=compiler;
 						//add to classlist for refrerence
 						classPrinter.classListAll.push(eachClass);
 						
-						var result=compiler.main(eachClass);
+						// var result=compiler.main(eachClass);
+						 var result=statementMaker.main(eachClass);
+						 // console.log(result);
 
 						if(result){
 								classPrinter.appendToStyleTag(result);
@@ -56,8 +70,6 @@ window.compiler=compiler;
 								}
 
 							}
-
-
 					}
 				});
 
@@ -65,74 +77,85 @@ window.compiler=compiler;
 
 		 }//if element has class attribute
 		 
-		 //Pseduo not supported at the time
-		 if(element.hasAttribute("mq")){
-
-			 	var getQuery=element.getAttribute("mq").trim();
-			 	var queryPattern=/[\w|-]+:.+\[[\w|\s|-]+\]/;
-			 	if(getQuery.match(queryPattern)){
-			 		var query= new ACSSMediaQuery(getQuery);
-			 		var mqstatememt=query.setQuery();
-			 		if(mqstatememt){
-			 		var mqClassName=query.className;
-			 		var mqClassList=query.classList;
-			 		var elementify="";
-
- 					//Elementify class name
-						if(mqClassName.match(/^_[a-z1-6|-]+_/)){
-							elementify=" "+mqClassName.match(/^_[a-z1-6|-]+_/)[0].replace(/_/g,"").replace(/-/g," ")+" ";
-					}//eoelementify
-
-
-			 		var mainStatement="@media " + mqstatememt+"{\r\n" + "." + mqClassName+elementify+ "{\r\n";
-			 		    if(mqClassList){
-			 		    	var pseduoQ=[];
-			 		    	var classArr=mqClassList.replace(/\s+/g," ").split(" ");
-
-			 		    	classArr.forEach(function(e){
-
-			 		    			var result=compiler.main(e);
-			 		    			if(result){
-			 		    				if(result[0].match(":")){
-			 		    					pseduoQ.push(result);
-			 		    				}else{
-			 		    				mainStatement+=result[1]+";\r\n";
-			 		    				}
-
-			 		    			}
-
-			 		    	});
-			 		    	mainStatement+="\r\n" + "}\r\n";
-			 		    	pseduoQ.forEach(function(e){
-			 		    	var pseduo=e[0].split(/\w+:/)[1];
-			 		    	mainStatement+="." + mqClassName+":"+pseduo+elementify+"{\r\n";
-
-			 		    			mainStatement+=e[1]+";\r\n";
-
-			 		    		mainStatement+="\r\n" + "}";
-
-			 		    	});
-
-			 		    mainStatement+="\r\n"+"}\r\n";
-			 		    }
-
-			 		    classPrinter.appendToStyleTag(mainStatement);
-			 		}//if setquert()
-
-			 	}
-
-
-
-
-
-
-		}//if it has attribute for media query :mq
-
-		ACSSClone(element);
+	 //If elemet is cloning classnames
+	ACSSClone(element);
 
 	},//eomain
+	styleSheetCompiler:function(content){
+		//console.warn(content);
+		var _this=this;
+		function arranger(m){
+				var result=null;
+					if(_this.propertyNValueList.hasOwnProperty(m)){
+						result=_this.propertyNValueList[m];
+						return result 
+					}else{
+						result=statementMaker.getPropertyAndValue(m.trim());
+						if(result){
+							_this.propertyNValueList[m]=result;
+							return result 
+
+						}else{
+							return m;
+						}
+					}
+			
+		}
+		var match=/[{][\w|#|\-|:|;|\.|\(|\)|\s|\\|\"|\%|\!|\,|\']+[}]/g;
+		var m1=/(?<=[{][\s]*)([A-Za-z0-9_-]+)(?=[\s]*[;])/g;
+		var m2=/(?<=[;][\s]*)([A-Za-z0-9_-]+)(?=[\s]*[;])/g;
+		var m3=/(?<=[;][\s]*)([A-Za-z0-9-_]+)(?=[\s]*[}])/g;
+		
+		return content.replace(match,function(e){
+		
+			 //1.repalce {.....;
+				e=e.replace(m1,function(m){
+						return arranger(m);
+				});
+				//console.log(e);
+			
+			//2.replace ;.....;
+			
+			e=e.replace(m2,function(m){
+					return arranger(m);
+				});
+
+			// console.log(e);
+			// 3.replace ;..}	
+			e=e.replace(m3,function(m){
+					return arranger(m);
+				});
+
+		 	console.log(e);
+		 	return e;
+			
+		 });
+
+		//return e;
+	},
 	launch:function(el){
 		var $root=el||document;
+		
+		//1. HANDLE ACSS STYLESHEETS
+		if(document.querySelector("[type='text/acss']")){
+			var content=document.querySelector("[type='text/acss']").innerText;
+			var compiledcontent=this.styleSheetCompiler(content);
+			
+			if(document.querySelector("[data-stylesheets='acss']")){
+				var styleTag=document.querySelector("[data-stylesheets='acss']");
+				styleTag.appendChild(document.createTextNode(compiledcontent));
+				
+			}else{
+				var styleTag=document.createElement("style");
+				styleTag.appendChild(document.createTextNode(compiledcontent));
+				styleTag.setAttribute("data-stylesheets","acss")
+				document.getElementsByTagName("head")[0].appendChild(styleTag);
+			}
+			
+		}
+
+		//2. HANDLE ACSS CLASSNAMES
+		
 		Array.prototype.forEach.call($root.getElementsByTagName("*"),function(e){
 		classPrinter.main(e);
 	});
@@ -140,6 +163,7 @@ window.compiler=compiler;
 
 
 },
+//show user alias css on browser 
 compile:function(){
   var classes=document.getElementById('styleAlias');
   if(classes){

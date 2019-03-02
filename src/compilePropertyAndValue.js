@@ -7,78 +7,13 @@ var devicePesduoBrowserEventAlias=require("./devicePseduoBrowserEvent");
 //locals
 
 var compiler={
-	//------holders
-		hasDevice:null,
-	 	hasPseduo:'',
-	 	hasEvent:'',
-	 	hasElements:'',
-	 	formerClassName:null,
-	 	//following match will be allow add your match if you want custom class also you can define custom function for handling custom class in factory function in makeAndCall object_
-	 	//filterClass:allowedPropertyAlias,
-		// Cross-browser-support
-		prefix:devicePesduoBrowserEventAlias.browserPrefix, 
-
-	//-Prefix 
-	handlePseduo:function(className){
-			//var stateObj={h:"hover",af:":after",bf:":before",fo:"focus",l:"link",a:"active",v:"visited"};
-			if(className && className.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)){
-				var psedoPrefix=className.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)[1];
-
-				if(psedoPrefix.match(/n[l]?c[0-9]+/)){
-					var matchV=psedoPrefix.match(/(n[l]?c)([0-9]+[n]?)/);
-					this.hasPseduo=":"+devicePesduoBrowserEventAlias.pseudoAlias.alias[matchV[1]]+"("+matchV[2]+")";
-					return className.replace(devicePesduoBrowserEventAlias.pseudoAlias.matchit,"");//[className.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)[0],":"+devicePesduoBrowserEventAlias.pseudoAlias.alias[matchV[1]]+"("+matchV[2]+")"];
-
-				}else{
-					this.hasPseduo=":"+devicePesduoBrowserEventAlias.pseudoAlias.alias[className.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)[1]];
-				return className.replace(devicePesduoBrowserEventAlias.pseudoAlias.matchit,"");
-				}
-			}else{
-
-				return className;
-			}
-
-
-		},
-		//handle mob, tab, 
-		handleDevice:function(className){
-			if(className.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
-				var prefix=className.match(devicePesduoBrowserEventAlias.deviceAlias.match)[0];
-				this.hasDevice=devicePesduoBrowserEventAlias.deviceAlias[prefix.replace(/[-|_]/,"")];
-				return className.replace(prefix,"");
-			}else{
-				return className;
-			}
-		},
-		//handle elemnts like .classname li a{}
-		handleElements:function(eachClass){
-			
-			if(eachClass.match(/^_[a-z1-6|-]+_/)){
-						//elementprefix to strip out it from className
-					var elementPrefix=eachClass.match(/^_[a-z1-6|-]+_/)[0];
-					eachClass=eachClass.replace(elementPrefix,"");
-
-					 elementPrefix=elementPrefix.replace(/[_|-]h-/g,":hover-");
-					 elementPrefix=elementPrefix.replace(/_/g,"");
-					elementPrefix=elementPrefix.replace(/---/g, " > ");
-					elementPrefix=elementPrefix.replace(/[\-][\-]/g," + ");
-					elementPrefix=elementPrefix.replace(/-/g," ");
-					this.hasElements=" "+elementPrefix;
-					return  eachClass;
-
-					
-
-				}else{
-					return eachClass;
-				}	
-				
-		},
-		//prefix-done
+	
 		//-----------------Function Factory-----------------------------------------------------------------------------
 	
 		//----------------------------Core functional Unit Compilers (CPU)	
 		//helper function for Time functioning
 	 	animation_transition_tf:function(each){
+	 		console.log(each);
 			var func="";
 			var N="";
 			 var funcAlias={e:"ease",l:"linear",ei:"ease-in",eo:"ease-out",eio:"ease-in-out",ss:"step-start",se:"step-end"};
@@ -236,6 +171,7 @@ var compiler={
 			var angleAlias={l:"left",r:"right",t:"top",b:"bottom",c:"center"};
 			var m=/[0-9]+[d]?[0-9]*(px|em|p|ex|ch|rem|vw|vh|vmin|vmax)|[c][_][0-9]{1,3}[p]?[0-9]{1,3}[p]?[0-9]{1,3}[p]?[0-9]{0,2}|[c][_][h][a-g0-9]{3,6}|[c][_][n][A-Za-z]+/g;
 			var marray=each.match(m);
+			if(!marray) return false;
 			var filterValue=[];
 			marray.forEach(function(each){
 				if(compiler.colorProcessor(each)){filterValue.push(","+compiler.colorProcessor(each));}else if(compiler.lengthProcessor(each)){filterValue.push(compiler.lengthProcessor(each));}
@@ -322,26 +258,62 @@ var compiler={
 
 
 ///////////////////-----------[Transition]-------------/
-		transitionProcessor:function(each){
+		transitionProcessors:function(each){
 			if(each.match(/^ttf/)){
-			 return this.animation_transition_tf(each.replace(/ttf/,''));
+				return this.animation_transition_tf(each.replace(/ttf/,''));
+			}
+			var _this=this;
+			var pNv="";
+			var ttf="";
+			each=each.replace(/^t_/,"");
+			//check if it has multiple 
+			if(each.match(/--/)){
+				each.split(/--/).forEach(function(e){
+					var getPropertyAlias=e.match(/^([a-z]+)[0-9]+/)[1];
+					if(aliasProperty.hasOwnProperty(getPropertyAlias)){
+						pNv=pNv+aliasProperty[getPropertyAlias]; 
+						e=e.replace(getPropertyAlias,"");
+						pNv=pNv+" "+_this.angleTimeFrequencyResolutionProcessor(e);
+
+					var forfunc=e.replace(/[A-Za-z0-9]+[-|_]?/,"");
+					if(forfunc){
+						ttf=_this.animation_transition_tf(forfunc);
+						if(ttf) pNv=pNv+ " "+ttf;
+					}
+
+					pNv=pNv+" ,";
+					
+			 	}else{
+							return false;
+				}
+				});
+				return pNv.replace(/,$/,"");
+			}else{
+				var getPropertyAlias=each.match(/^([a-z]+)[0-9]+/)[1];
+					if(aliasProperty.hasOwnProperty(getPropertyAlias)){
+						pNv=pNv+aliasProperty[getPropertyAlias]; 
+						each=each.replace(getPropertyAlias,"");
+						pNv=pNv+" "+_this.angleTimeFrequencyResolutionProcessor(each);
+
+					var forfunc=each.replace(/[A-Za-z0-9]+[-|_]?/,"");
+					if(forfunc){
+						ttf=_this.animation_transition_tf(forfunc);
+						if(ttf) pNv=pNv+ " "+ttf;
+					}
+
+					return pNv;
+					
+			 	}else{
+						return false;
+				}
 			}
 
-			var func=""//this.animation_transition_tf(each);
-			//var staticPropertyAlias={};
-			if(each.match(/t_all/)){var property="all";}else{
-				var getPropertyAlias=each.match(/t_([a-z]+)[0-9]+/)[1];
-				var property=this.alias[getPropertyAlias];
-			}
 
-			var time=this.angleTimeFrequencyResolutionProcessor(each.match(/[t][_][A-Za-z0-9]+[-|_]?/)[0]);
-			var forfunc=each.replace(/[t][_][A-Za-z0-9]+[-|_]?/,"");
-			if(forfunc){
-				func=this.animation_transition_tf(forfunc);
-			}
+		},
+		transitionProcessor:function(each){
+			return this.transitionProcessors(each);
+			
 
-			var value=property+ " " + time + " " + func;
-			return value;
 
 		},
 
@@ -584,7 +556,7 @@ matchAndCall:{
 				return [getProperty,getValue];
 			  }
 			},
-		transition:{match:/^t_[a-z]|ttf+/,
+		transition:{match:/^t_[a-z]+[0-9]+|^ttf+/,//([a-z]+)[0-9]+
 			  callFunction:function(each){//console.log("i am Transition");
 			  if(each.match(/ttf/)){
 			  	var getProperty="transition-timing-function";
@@ -619,99 +591,7 @@ matchAndCall:{
 
 	},
 	//--main-processor
-	//Get only properties and values
-	getPropertyAndValue:function(eachClass){
-		this.formerClassName=eachClass;
-		this.hasPseduo='';
-		this.hasElements='';
-		this.hasDevice=null;
-
-		var propertyNValue=null;
-		eachClass=eachClass.trim();
-		
-
-
-			//------------------Follow the order-handleElement->handledevice->handle->pseduo---------------
-//-------------------------------handleElemnts
-		eachClass=this.handleElements(eachClass);
-		//returns classname
-
-
-//------------------------------handle device
-		eachClass=this.handleDevice(eachClass);
-		//returns classname
-
 	
-//----------------------------pesudo handler
-		eachClass=this.handlePseduo(eachClass);
-		//return classname
-
-//At this point we have
-		//return [eachClass, this.hasElements,this.hasDevice, this.hasPseduo];
-
-
-//Case 1: Static Classname defination---------------------------------static className Handeler--------------------------------
-					if(staticClassNames.hasOwnProperty(eachClass)){
-					//console.log("ststic:"+eachClass);
-					 propertyNValue=staticClassNames[eachClass];
-					
-					}else{
-
-//Case 2: Dynamic Classname Defination-----------------------------------------------------------------------------------------------------------------
-					for (key in compiler.matchAndCall){
-						if(eachClass.match(compiler.matchAndCall[key].match)){
-							var result=compiler.matchAndCall[key].callFunction(eachClass);
-							if(eachClass.match(/^(pers|perso|fl)/)){
-							//if(eachClass.match(/^(tf|t_|pers|perso|fl|txs|bxs)/)){//check if its need prefix for property
-								//var classname=stateModifier[0]+eachClass+stateModifier[1];
-								var statementConcat="";//."+stateModifier[0]+eachClass+stateModifier[1]+"{";
-								compiler.prefix.forEach(function(prefix){
-									statementConcat+=prefix+result[0]+":"+result[1]+";";
-
-								});
-								statementConcat+=result[0]+":"+result[1];
-								propertyNValue=statementConcat;
-								//value based prfirex
-							}else if(eachClass.match(/^bg[i]?[l|r]g/)){
-								//var className=stateModifier[0]+eachClass+stateModifier[1];
-								var statementConcat="";//."+stateModifier[0]+eachClass+stateModifier[1]+"{";
-								compiler.prefix.forEach(function(prefix){
-									statementConcat+=result[0]+":"+prefix+result[1]+";";
-
-								});
-								 statementConcat+=result[0]+":"+result[1];
-								 propertyNValue = statementConcat;
-
-								//compiler.appendToStyleTag(statementConcat);
-
-							}else{//eoprfixissue
-								propertyNValue = result[0]+":" + result[1];
-								//compiler.appendToStyleTag("."+stateModifier[0]+eachClass+stateModifier[1]+"{"+result[0]+":"+result[1]+";}");
-							}
-							break;
-
-
-							}
-			      }//End of foreach
-//------------------------------------------------------------------------------------------------------------------
-		}//End of Else
-
-		return propertyNValue;
-	},
-	// return result
-	main:function(eachClass){
-		if(eachClass==""){return false;}
-		var propertyNValue=this.getPropertyAndValue(eachClass);
-
-		//time to return to Printer
-		if(!propertyNValue){return false;}
-		if(this.hasDevice){
-			return this.hasDevice+ "."+this.formerClassName+this.hasElements+this.hasPseduo+" { "+propertyNValue+"; } " + " } ";
-		}else{
-			return "."+this.formerClassName+this.hasElements+this.hasPseduo+" { "+propertyNValue+"; } "
-		}
-	},
-
 
 };//end of module.export
 

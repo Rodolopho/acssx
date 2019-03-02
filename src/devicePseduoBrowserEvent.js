@@ -1,20 +1,16 @@
 exports.deviceAlias={
-	match:/^mob[-|_]|tab[-|_]|print[-|_]/,
-	//Device 
-	//screens
-	// "mob":"@media screen and (min-device-width : 320px) and (max-device-width : 768px) {",
-	// "tab":"@media screen and (min-device-width : 768px) and (max-device-width : 1024px) {",
-	// "lap":"@media screen  and (min-width : 1224px) {",
-	// "print":"@media print{",
+	match:/^(mob[-|_]|tab[-|_]|lab[-|_]|hd[-|_]|print[-|_]|xs[-|_]|sm[-|_]|md[-|_]|lg[-|_]|xl[-|_])/,
 	"mob":"@media (max-width : 768px) {",
-	"tab":"@media  (min-width : 768px) and (max-width : 992px) {",
-	"lap":"@media  (min-width : 1200px) {",
+	"tab":"@media  (min-width : 768px){",
+	"lap":"@media  (min-width : 992px) {",
+	"desk":"@media  (min-width : 1200px) {",
+	"hd":"@media  (min-width : 1408px) {",
 	"print":"@media print{",
-	"xs":"@media (max-width : 768px) {",
-	"sm":"@media  (min-width : 768px) and (max-width : 992px) {",
-	"md":"@media  (min-width : 1200px) {",
-	"lg":"@media print{",
-
+	"xs":"@media (max-width : 576px) {",
+	"sm":"@media  (min-width : 576px) {",
+	"md":"@media  (min-width : 768px) {",
+	"lg":"@media  (min-width : 992px) {",
+	"xl":"@media  (min-width : 1200px) {",
 };
 //Events to llok afterk
 exports.eventAlias={
@@ -31,11 +27,11 @@ exports.pseudoAlias={
 	 };
 
 //browser Prefix	 
-
 exports.browserPrefix=["-moz-","-webkit-","-ms-"];
 
 //Each time compiler check and match the following pattern. if pattern matches then 
-//Compiler will compile otherwise it wont leaves it untouched.
+//Compiler will compile otherwise it will leaves it untouched.
 //dont forget to take out pseduo , elements, device prefix before passing to main compiler onlt compiles 
 //Raw and Pure classnames i.e which has just property and value
+//Not used lately
 exports.allowedPropertyAlias=/(aic|adu|tdu|bgp|bgs|bw|blw|brw|btw|btw|bbw|br|bblrs|btrrs|bblrs|btlrs|btm|bs|cw|cg|crw|fb|fs|fl[bcgis]|flse|h|l|lh|les|m|ma|mt|mr|mb|ml|xw|xh|mw|mh|mo|op|olw|olo|p|pa|pt|pr|pb|pl|pers|perso|r|t|tfo|ts|ti|va|w|ws|cc|fg|fs|o|ord|lh|orp|op|zib|brt|bl|bt|bb|ol|cr)[-]?[0-9]|c_|url[-_]|ff_|f_|(h|a|l|fo|af|bf)[-_]|bg[i]?(lg|rg)|tf|t_|an_/;

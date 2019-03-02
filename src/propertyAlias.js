@@ -3,11 +3,12 @@
 
 	//Property Alias Object
 
-		"an":"animation",//-------------
-		"adl":"animation-delay",//----------------
-		"adu":"animation-duration",//-------------
+		"an":"animation",//-------------##
+		"adl":"animation-delay",//----------------##
+		"adu":"animation-duration",//-------------##
 		"aic":"animation-iteration-count",
 		//"an":"animation-name",
+		"all":"all",
 		"atf":"animation-timimg-function",//atfcb0d1-0d7-1-0d1=animation-timimg-function:cubic-bezeir(0.1,0.7,1,0.1) for negative value use -- or _-1d5//
 		"b"  :"border",
 		"bb"  :"border-bottom",
@@ -23,7 +24,7 @@
 		"bgs":"background-size",//-----------
 		"bl"  :"border-left",
 		"blc"  :"border-left-color",
-		"brt"  :"border-right",//--------------
+		"brt"  :"border-right",//--------------#
 		"brc"  :"border-right-color",//---------------
 		"br"  :"border-radius",
 		"brw"  :"border-right-width",
@@ -31,22 +32,22 @@
 		"bt"  :"border-top",
 		"btc"  :"border-top-color",
 		"btlr":"border-top-left-radius",
-		"btm"  :"bottom",
+		"btm"  :"bottom",//-----------------------#
 		"btrr": "border-top-right-radius",
 		"btw"  :"border-top-width",
 		"bw"  :"border-width",
-		"bxs":"box-shadow",
+		"bxs":"box-shadow",//----------------------------#
 		"c"  :"color",
 		"cc":"column-count",
 		"cg":"column-gap",
 		"ci"  :"counter-increment",
-		"cols":"columns",//------------
-		"con"  :"content",//string//------------
+		"cols":"columns",//------------#
+		"con"  :"content",//string//------------#
 		"cp"  :"clip",//-----------
 		"cr"   :"counter-reset",//----------
-		"cr2":"column-rule",//-----------
-		"crc":"column-rule-color",
-		"crw":"column-rule-width",
+		"cr2":"column-rule",//-----------#
+		"crc":"column-rule-color",//#
+		"crw":"column-rule-width",//#
 		//"c"  :"cursor",
 		"cw":"column-width",
 		"f_"    :"font",
@@ -100,7 +101,7 @@
 		"tdu":"transition-duration",//-----
 		"tf":"transform",//----
 		"tfo":"transform-origin",//--------
-		"ts":"tab-size",
+		"tbs":"tab-size",//------------*
 		"ttf":"transition-timing-function",
 		"ta":"text-align",//string
 		"tdc":"text-decoration-color",
@@ -108,7 +109,7 @@
 		"tec":"text-emphasis-color",
 		"ti" : "text-indent",
 		"to":"text-overflow",//string
-		"txs" :"text-shadow",//-----------
+		"ts" :"text-shadow",
 		"va":"vertical-align"	,
 		"w" :"width",
 		"ws":"word-spacing",
