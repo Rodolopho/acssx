@@ -84,6 +84,8 @@ let acssCompiler={
 		const m2=/(?<=[;][\s]*)([A-Za-z0-9_-]+)(?=[\s]*[;])/g;
 		const m3=/(?<=[;][\s]*)([A-Za-z0-9-_]+)(?=[\s]*[}])/g;
 		const m4=/(?<=[\/][\s]*)([A-Za-z0-9-_]+)(?=[\s]*[;|}])/g;
+		const m5=/(?<=[\{][\s]*)([A-Za-z0-9-_]+)(?=[\s]*[}])/g;
+
 		return content.replace(match,function(e){
 		
 			 //1.repalce {.....;
@@ -104,8 +106,13 @@ let acssCompiler={
 					return arranger(m);
 				});
 
-			// 3.replace */..;|}	
+			// 4.replace */..;|}	
 			e=e.replace(m4,function(m){
+					return arranger(m);
+				});
+
+			// 5.replace {...}	
+			e=e.replace(m5,function(m){
 					return arranger(m);
 				});
 
