@@ -52,7 +52,9 @@ var statementMaker={
 
 //Case 2: Dynamic Classname Defination-----------------------------------------------------------------------------------------------------------------
 					for (key in compiler.matchAndCall){
+
 						if(eachClass.match(compiler.matchAndCall[key].match)){
+							//console.log(eachClass);
 							var result=compiler.matchAndCall[key].callFunction(eachClass);
 							if(eachClass.match(/^(pers|perso|fl)/)){
 							//if(eachClass.match(/^(tf|t_|pers|perso|fl|txs|bxs)/)){//check if its need prefix for property
@@ -116,7 +118,7 @@ var statementMaker={
 		//check and handle device's for responsive
 
 		if(cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
-			console.log(cn);
+			// console.log(cn);
 			//console.log(devicePesduoBrowserEventAlias.deviceAlias.match);
 			//if(cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
  				var prefix=cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)[0];

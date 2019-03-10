@@ -1,6 +1,6 @@
 const path=require('path');
 const fs=require('fs');
-
+var sass=require('node-sass');
 //MAKES CSS STATEMENTS
 const statementMaker=require('./src/statementMaker.js');
 //
@@ -86,7 +86,7 @@ let acssCompiler={
 		const m4=/(?<=[\/][\s]*)([A-Za-z0-9-_]+)(?=[\s]*[;|}])/g;
 		const m5=/(?<=[\{][\s]*)([A-Za-z0-9-_]+)(?=[\s]*[}])/g;
 
-		return content.replace(match,function(e){
+		var acssStm=content.replace(match,function(e){
 		
 			 //1.repalce {.....;
 				e=e.replace(m1,function(m){
@@ -117,9 +117,16 @@ let acssCompiler={
 				});
 
 		 	//console.log(e);
-		 	return e;
+		 	 return e;
 			
 		 });
+
+
+		var result=sass.renderSync({
+			data:acssStm
+		});
+		
+		return result.css;
 
 	},
 	compileStyleSheet:function(file,output){
@@ -176,7 +183,7 @@ let acssCompiler={
 			
 			try {
 				
-		  		fs.appendFileSync(this.output, compileStatement);
+		  		fs.appendFileSync(this.output, `\n/* AliasCSS : These are classnames compiled  from ${path.basename(file)}*/\n\n`+compileStatement);
 		  		console.log("Successfully  compiled acss from " + file);
 			} catch (err) {
 			  console.log("Couldn't able to append compiled acss from " + file);
@@ -215,11 +222,12 @@ let acssCompiler={
 					}
 				});
 			})
+
 			return;
 		}
 
 		//case @: file or folder
-		if(fs.existsSync(this.input)) console.log('file yes');
+		// if(fs.existsSync(this.input)) //console.log('file yes');
 		fs.stat(this.input,(err,stats)=>{
 		
 			if(err) throw err;
@@ -239,19 +247,36 @@ let acssCompiler={
 			console.error("Please provide, entry or/and output file/s");
 		}
 		
-	}
+	},
+	watch:function(){
+		console.log("Files are being Watched!");
+		fs.watch(this.input, (eventType, filename) => {
+		  if (filename) {
+		    // console.log(`filename provided: ${filename}`);
+		    this.run();
+		    // console.log('Done! ');
+		  } else {
+		    console.log('filename not provided');
+		  }
+		})
+
+	},
 
 
 };
 //-------------------Proccess.argv--------------
-let argv=process.argv;
-if(argv[2]){
-	if(argv[3]){
-		acssCompiler.run(argv[2],argv[3]);
-	}else{
-		acssCompiler.run(argv[2],'acss.css');
-	}
-}
+// let argv=process.argv;
+// if(argv[2]){
+// 	if(argv[3]){
+// 		acssCompiler.run(argv[2],argv[3]);
+// 	}else{
+// 		acssCompiler.run(argv[2],'acss.css');
+// 	}
+
+// 	if(argv.indexOf("--watch")!=-1){
+// 		acssCompiler.watch();
+// 	}
+// }
 //-----------------endPA
 
 module.exports=acssCompiler;//end of acssCompiler

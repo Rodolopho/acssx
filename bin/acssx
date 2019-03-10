@@ -1,0 +1,26 @@
+ const acssCompiler=require('../index.js');
+
+ let argv=process.argv;
+ let watch=false;
+
+ if(argv.indexOf("--watch")!=-1){
+ 	watch=true;
+		argv.splice(argv.indexOf('--watch'),1);
+	}
+
+if(argv[2]){
+	acssCompiler.input=argv[2];
+	if(argv[3]){
+		acssCompiler.output=argv[3];
+		// acssCompiler.run(argv[2],argv[3]);
+	}else{
+		acssCompiler.output='acss.css';
+		// acssCompiler.run(argv[2],'acss.css');
+	}
+
+	if(watch){
+		acssCompiler.watch();
+	}else{
+		acssCompiler.run();
+	}
+}

@@ -234,10 +234,10 @@ var compiler={
 			var tfFunc="";
 			var value="";
 			(function(){
-			var mLen=each.match(/^(tx|ty|tz|t3d|t|p)[0-9]/);
+			var mLen=each.match(/^(tx|ty|tz|t3d|t|p)[-]?[0-9]/);
 			if(mLen){tfFunc=tfAlias[mLen[1]];value=compiler.lengthProcessor(each).replace(/[ ]/g,","); return true;}
 
-			var mNum=each.match(/^(m3d|m|sx|sy|sz|s3d|s|r3d)[0-9]/);
+			var mNum=each.match(/^(m3d|m|sx|sy|sz|s3d|s|r3d)[-]?[0-9]/);
 			if(mNum){
 				tfFunc=tfAlias[mNum[1]];
 				eeach=each.replace(/m3d|s3d|r3d/,"");
@@ -249,7 +249,7 @@ var compiler={
 				value=value.replace(/[,]$/,"")+a;
 			 return true;
 	        }
-	        var mAng=each.match(/^(rx|ry|rz|r|sky|skx)[0-9]/);
+	        var mAng=each.match(/^(rx|ry|rz|r|sky|skx)[-]?[0-9]/);
 			if(mAng){tfFunc=tfAlias[mAng[1]];value=compiler.angleTimeFrequencyResolutionProcessor(each); return true;}
 			})();
 			var tfValue=tfFunc+"("+value+")";
@@ -337,7 +337,7 @@ var compiler={
 matchAndCall:{
 		length:{
 			match:/^(bgp|bgs|bw|blw|brw|btw|btw|bbw|br|bblrs|btrrs|bblrs|btlrs|btm|bs|cw|cg|crw|fb|fs|h|l|lh|les|m|ma|mt|mr|mb|ml|xw|xh|mw|mh|mo|op|olw|olo|p|pa|pt|pr|pb|pl|pers|perso|r|t|tfo|ts|ti|va|w|ws)[-]?[0-9]+[d]?[0-9]*(px|em|p|ex|ch|rem|vw|vh|vmin|vmaxc|m|mm|in|pt|pc)/,
-			  callFunction:function(each){//console.log("i am a length");
+			  callFunction:function(each){//console.log(each);
 			  	var propertyAlias=each.match(this.match)[1],
 					getProperty=aliasProperty[propertyAlias],
 					getValue=compiler.lengthProcessor(each);

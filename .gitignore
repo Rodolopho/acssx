@@ -3,5 +3,6 @@ node_modules
 .DS_Store
 old-ref/
 index.html
-demo.acss
+demo
 index-old.js
+test

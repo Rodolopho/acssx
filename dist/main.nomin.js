@@ -652,7 +652,6 @@ ffrwr:"-webkit-flex-flow:row wrap-reverse;-ms-flex-flow:row wrap-reverse;flex-fl
 ffrw:"-webkit-flex-flow: row wrap;-ms-flex-flow: row wrap;flex-flow: row wrap",
 ffss:"font-family: sans-serif",
 ffs:"font-family: serif",
-
 ffw:"-webkit-flex-flow-wrap: wrap;-ms-flex-flow-wrap: wrap;flex-flow-wrap: wrap",//flex-flow
 fww:"-webkit-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap",
 ffwp:"-webkit-flex-flow-wrap: wrap-reverse;-ms-flex-flow-wrap: wrap-reverse;flex-flow-wrap: wrap-reverse",
@@ -757,8 +756,7 @@ fwbr:"font-weight: bolder",
 fwb2:"font-weight: bolder",
 fwl:"font-weight: lighter",
 fwnl:"font-weight: normal",
-fwn2:"font-weight: normal",//--------------
-
+fwn:"font-weight: normal",
 /*height: auto;*/
 ha:"-webkit-hyphens: auto;-moz-hyphens: auto;-ms-hyphens: auto;hyphens: auto",
 hm:"-webkit-hyphens: manual;-moz-hyphens: manual;-ms-hyphens: manual;hyphens: manual",
@@ -1063,29 +1061,6 @@ tobtm:"-webkit-transform-origin: bottom;transform-origin: bottom",
 tob:"-webkit-transform-origin: bottom;transform-origin: bottom",//------------
 tocl:"text-overflow: clip",
 toc2:"text-overflow: clip",//----------------
-//-------update-----------
-
-tolc:"-webkit-transform-origin: left center;transform-origin: left center",
-tolt:"-webkit-transform-origin: left top;transform-origin: left top",
-tolb:"-webkit-transform-origin: left bottom;transform-origin: left bottom",
-
-torb:"-webkit-transform-origin: right bottom;transform-origin: right  bottom",
-tort:"-webkit-transform-origin: right top;transform-origin: right  top",
-torc:"-webkit-transform-origin: right center;transform-origin: right  center",
-
-tocc:"-webkit-transform-origin: center center;transform-origin: center  center",
-tocb:"-webkit-transform-origin: center bottom;transform-origin: center  bottom",
-toct:"-webkit-transform-origin: center top;transform-origin: center  top",
-tocl:"-webkit-transform-origin: center left;transform-origin: center  left",
-tocr:"-webkit-transform-origin: center right;transform-origin: center  right",
-
-totc:"-webkit-transform-origin: top center;transform-origin: top center  ",
-totr:"-webkit-transform-origin: top right;transform-origin: top right  ",
-totl:"-webkit-transform-origin: top left;transform-origin: top left  ",
-tobc:"-webkit-transform-origin: bottom center;transform-origin: bottom center  ",
-tobl:"-webkit-transform-origin: bottom left;transform-origin: bottom left  ",
-tobr:"-webkit-transform-origin: bottom right;transform-origin: bottom right  ",
-//----------------------------------updateend
 toc:"-webkit-transform-origin: center;transform-origin: center",
 toe:"text-overflow: ellipsis",
 tol:"-webkit-transform-origin: left;transform-origin: left",
@@ -2380,11 +2355,6 @@ const classPrinter=__webpack_require__(4);
 const acssLiveUpdate=__webpack_require__(9);
 
 window.openAcssLiveEditor=acssLiveUpdate;
-window.closeAcssLiveEditor=function(){
-	    var ele=document.getElementById("quickChangeBox");
-    	ele.parentNode.removeChild(ele);
-};
-
 classPrinter.launch();
 window.classPrinter=classPrinter;
 
@@ -2789,9 +2759,7 @@ var statementMaker={
 
 //Case 2: Dynamic Classname Defination-----------------------------------------------------------------------------------------------------------------
 					for (key in compiler.matchAndCall){
-
 						if(eachClass.match(compiler.matchAndCall[key].match)){
-							//console.log(eachClass);
 							var result=compiler.matchAndCall[key].callFunction(eachClass);
 							if(eachClass.match(/^(pers|perso|fl)/)){
 							//if(eachClass.match(/^(tf|t_|pers|perso|fl|txs|bxs)/)){//check if its need prefix for property
@@ -2855,7 +2823,7 @@ var statementMaker={
 		//check and handle device's for responsive
 
 		if(cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
-			// console.log(cn);
+			console.log(cn);
 			//console.log(devicePesduoBrowserEventAlias.deviceAlias.match);
 			//if(cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
  				var prefix=cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)[0];
@@ -3285,10 +3253,10 @@ var compiler={
 			var tfFunc="";
 			var value="";
 			(function(){
-			var mLen=each.match(/^(tx|ty|tz|t3d|t|p)[-]?[0-9]/);
+			var mLen=each.match(/^(tx|ty|tz|t3d|t|p)[0-9]/);
 			if(mLen){tfFunc=tfAlias[mLen[1]];value=compiler.lengthProcessor(each).replace(/[ ]/g,","); return true;}
 
-			var mNum=each.match(/^(m3d|m|sx|sy|sz|s3d|s|r3d)[-]?[0-9]/);
+			var mNum=each.match(/^(m3d|m|sx|sy|sz|s3d|s|r3d)[0-9]/);
 			if(mNum){
 				tfFunc=tfAlias[mNum[1]];
 				eeach=each.replace(/m3d|s3d|r3d/,"");
@@ -3300,7 +3268,7 @@ var compiler={
 				value=value.replace(/[,]$/,"")+a;
 			 return true;
 	        }
-	        var mAng=each.match(/^(rx|ry|rz|r|sky|skx)[-]?[0-9]/);
+	        var mAng=each.match(/^(rx|ry|rz|r|sky|skx)[0-9]/);
 			if(mAng){tfFunc=tfAlias[mAng[1]];value=compiler.angleTimeFrequencyResolutionProcessor(each); return true;}
 			})();
 			var tfValue=tfFunc+"("+value+")";
@@ -3388,7 +3356,7 @@ var compiler={
 matchAndCall:{
 		length:{
 			match:/^(bgp|bgs|bw|blw|brw|btw|btw|bbw|br|bblrs|btrrs|bblrs|btlrs|btm|bs|cw|cg|crw|fb|fs|h|l|lh|les|m|ma|mt|mr|mb|ml|xw|xh|mw|mh|mo|op|olw|olo|p|pa|pt|pr|pb|pl|pers|perso|r|t|tfo|ts|ti|va|w|ws)[-]?[0-9]+[d]?[0-9]*(px|em|p|ex|ch|rem|vw|vh|vmin|vmaxc|m|mm|in|pt|pc)/,
-			  callFunction:function(each){//console.log(each);
+			  callFunction:function(each){//console.log("i am a length");
 			  	var propertyAlias=each.match(this.match)[1],
 					getProperty=aliasProperty[propertyAlias],
 					getValue=compiler.lengthProcessor(each);

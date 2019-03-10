@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha||true",
     "build": "webpack",
-    "watch": "webpack  --watch"
+    "watch": "webpack  --watch",
+    "watch-a": "node bin/acssx demo/ test.css --watch"
+
   },
   "repository": {
     "type": "git",
@@ -24,14 +26,16 @@
     "url": "https://github.com/Rodolopho/acssx/issues"
   },
   "homepage": "https://github.com/Rodolopho/acssx#readme",
-  "dependencies": {},
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-string": "^1.5.0",
     "mocha": "^5.2.0",
     "unminified-webpack-plugin": "^2.0.0",
     "webpack": "^4.29.6",
-    "webpack-cli": "^2.1.5",
+    "webpack-cli": "^3.x.x",
     "webpack-dev-server": "^3.2.1"
   }
 }

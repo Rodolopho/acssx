@@ -1,5 +1,5 @@
 exports.deviceAlias={
-	match:/^(mob[-|_]|tab[-|_]|lab[-|_]|hd[-|_]|print[-|_]|xs[-|_]|sm[-|_]|md[-|_]|lg[-|_]|xl[-|_])/,
+	match:/^(mob|tab|lab|hd|print|xs|sm|md|lg|xl)[-_]/,
 	"mob":"@media (max-width : 768px) {",
 	"tab":"@media  (min-width : 768px){",
 	"lap":"@media  (min-width : 992px) {",
@@ -12,7 +12,7 @@ exports.deviceAlias={
 	"lg":"@media  (min-width : 992px) {",
 	"xl":"@media  (min-width : 1200px) {",
 };
-//Events to llok afterk
+//Events to depriciated
 exports.eventAlias={
 		match:/^(toggle|click|blur|change|dblclick|drag|keypress|scroll)[-|_]/,
 		allowedEvents:['toggle','click','blur','change','dblclick','drag','keypress'],
