@@ -2,7 +2,7 @@
 //imports
 var aliasProperty=require('./propertyAlias');
 var staticClassNames=require("./staticClassNames")
-var devicePesduoBrowserEventAlias=require("./devicePseduoBrowserEvent");
+// var devicePesduoBrowserEventAlias=require("./devicePseduoBrowserEvent");
 
 //locals
 

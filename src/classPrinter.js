@@ -1,6 +1,6 @@
  //const compiler=require("./compiler.js");
- const ACSSMediaQuery=require("../extension/mediaquery");
- const ACSSClone=require("../extension/clone");
+ // const ACSSMediaQuery=require("../extension/mediaquery");
+ // const ACSSClone=require("../extension/clone");
  const statementMaker=require("./statementMaker");
 // -------------------------------------------printer
 //view
@@ -35,7 +35,7 @@ window.compiler=statementMaker;
 		//checking of class existance
 		if(element.hasAttribute("class")){
 			//Has a group
-			if(element.getAttribute('acss')){
+			if(element.getAttribute('acss-group')){
 				var result=statementMaker.gp(element.getAttribute('acss'),element.getAttribute("class").trim());
 				if(result){
 						classPrinter.appendToStyleTag(result);
@@ -78,7 +78,7 @@ window.compiler=statementMaker;
 		 }//if element has class attribute
 		 
 	 //If elemet is cloning classnames
-	ACSSClone(element);
+	// ACSSClone(element);
 
 	},//eomain
 	styleSheetCompiler:function(content){

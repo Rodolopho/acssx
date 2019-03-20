@@ -81,138 +81,11 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-//var AliasProperty={
-	module.exports={
-
-	//Property Alias Object
-
-		"an":"animation",//-------------##
-		"adl":"animation-delay",//----------------##
-		"adu":"animation-duration",//-------------##
-		"aic":"animation-iteration-count",
-		//"an":"animation-name",
-		"all":"all",
-		"atf":"animation-timimg-function",//atfcb0d1-0d7-1-0d1=animation-timimg-function:cubic-bezeir(0.1,0.7,1,0.1) for negative value use -- or _-1d5//
-		"b"  :"border",
-		"bb"  :"border-bottom",
-		"bbc"  :"border-bottom-color",
-		"bblr":"border-bottom-left-radius",
-		"bbrr": "border-bottom-right-radius",
-		"bbw"  :"border-bottom-width",
-		"bc" :"border-color",
-		"bg"  :"background",//-------
-		"bgc"  :"background-color",//-----------
-		"bgi"  :"background-image",//----------
-		"bgp"  :"background-position",//----------
-		"bgs":"background-size",//-----------
-		"bl"  :"border-left",
-		"blc"  :"border-left-color",
-		"brt"  :"border-right",//--------------#
-		"brc"  :"border-right-color",//---------------
-		"br"  :"border-radius",
-		"brw"  :"border-right-width",
-		"bs"  :"border-spacing",
-		"bt"  :"border-top",
-		"btc"  :"border-top-color",
-		"btlr":"border-top-left-radius",
-		"btm"  :"bottom",//-----------------------#
-		"btrr": "border-top-right-radius",
-		"btw"  :"border-top-width",
-		"bw"  :"border-width",
-		"bxs":"box-shadow",//----------------------------#
-		"c"  :"color",
-		"cc":"column-count",
-		"cg":"column-gap",
-		"ci"  :"counter-increment",
-		"cols":"columns",//------------#
-		"con"  :"content",//string//------------#
-		"cp"  :"clip",//-----------
-		"cr"   :"counter-reset",//----------
-		"cr2":"column-rule",//-----------#
-		"crc":"column-rule-color",//#
-		"crw":"column-rule-width",//#
-		//"c"  :"cursor",
-		"cw":"column-width",
-		"f_"    :"font",
-		"f":"flex",
-		"fb":"flex-basis",
-		"ff"  :"font-family",
-		"fg":"flex-grow",
-		"fl":"filter",//--------------
-		"fs"  :"font-size",
-		"fsk":"flex-shrink",//--------------
-		"fsa":"font-size-adjust",
-		"h":"height",
-		"i":"icon",
-		"io":"image-orientation",
-		"ir":"image-resolution",
-		"key":"@keyframes",
-		"l"  :"left",
-		"les"  :"letter-spacing",//--------
-		"lh"  :"line-height",
-		"ls"  :"list-style",
-		"lsi"  :"list-style-image",
-		"m"  :"margin",
-		"ma" :"margin",
-		"mb"  :"margin-bottom",
-		"mh"  :"min-height",
-		"ml"  :"margin-left",
-		"mo"  :"marker-offset",
-		"mr"  :"margin-right",
-		"mt"  :"margin-top",
-		"mw"  :"min-width",
-		"ord":"order",//-------
-		"ol"  :"outline",//-------
-		"olc"  :"outline-color",//-----
-		"olo":"outline-offset",//---------
-		"olw"  :"outline-width",//--------
-		"op":"object-position",//-----------
-		"o":"opacity",
-		"orp":"orphans",//------
-		"p"  :"padding",
-		"pb"  :"padding-bottom",
-		"pers":"perspective",//--------
-		"perso":"perspective-origin",
-		"pl"  :"padding-left",
-		"pr"  :"padding-right",
-		"pt"  :"padding-top",
-		"q"    :"quotes",//string
-		"r"  :"right",
-		"t"  :"top",
-		"t_": "transition",//---------
-		"tdl":"transition-delay",//---
-		"tdu":"transition-duration",//-----
-		"tf":"transform",//----
-		"tfo":"transform-origin",//--------
-		"tbs":"tab-size",//------------*
-		"ttf":"transition-timing-function",
-		"ta":"text-align",//string
-		"tdc":"text-decoration-color",
-		"te":"text-emphasis",
-		"tec":"text-emphasis-color",
-		"ti" : "text-indent",
-		"to":"text-overflow",//string
-		"ts" :"text-shadow",
-		"va":"vertical-align"	,
-		"w" :"width",
-		"ws":"word-spacing",
-		"xh"  :"max-height",//------
-		"xw"  :"max-width",//----------------
-		"zi":"z-index",
-		
-
-
-};//endof Property Alias
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports) {
 
 
@@ -261,6 +134,10 @@ atfse:"-webkit-animation-timing-function: step-end;animation-timing-function: st
 atfss:"-webkit-animation-timing-function: step-start;animation-timing-function: step-start",
 au:"all: unset",
 b0:"border:0",
+bb0:'border-bottom:0',
+bt0:'border-top:0',
+br0:'border-right:0',
+bl0:'border-left:0',
 baac:"-webkit-column-break-after: avoid-column;page-break-after: avoid-column;break-after: avoid-column",
 
 baf:"box-align: after",
@@ -310,6 +187,8 @@ bbsn:"border-bottom-style: none",
 bbso:"border-bottom-style: outset",
 bbsr:"border-bottom-style: ridge",
 bbss:"border-bottom-style: solid",
+bbwa:"border-bottom-width: auto",
+bbwi:"border-bottom-width: initial",
 bbwm:"border-bottom-width: medium",
 bbwt:"border-bottom-width: thick",
 bbwtn:"border-bottom-width: thin",
@@ -394,6 +273,8 @@ blsn:"border-left-style: none",
 blso:"border-left-style: outset",
 blsr:"border-left-style: ridge",
 blss:"border-left-style: solid",
+blwa:"border-left-width: auto",
+blwi:"border-left-width: initial",
 blwm:"border-left-width: medium",
 blwt:"border-left-width: thick",
 blwtn:"border-left-width: thin",
@@ -419,6 +300,8 @@ brsn:"border-right-style: none",
 brso:"border-right-style: outset",
 brsr:"border-right-style: ridge",
 brss:"border-right-style: solid",
+brwa:"border-right-width: auto",
+brwi:"border-right-width: initial",
 brwm:"border-right-width: medium",
 brwt:"border-right-width: thick",
 brwtn:"border-right-width: thin",
@@ -459,12 +342,16 @@ btsn:"border-top-style: none",
 btso:"border-top-style: outset",
 btsr:"border-top-style: ridge",
 btss:"border-top-style: solid",
+btwa:"border-top-width: auto",
+btwi:"border-top-width: initial",
 btwm:"border-top-width: medium",
 btwt:"border-top-width: thick",
 btwtn:"border-top-width: thin",
 btwt2:"border-top-width: thin",//------------------
 bvh:"-webkit-backface-visibility: hidden;backface-visibility: hidden",
 bvv:"-webkit-backface-visibility: visible;backface-visibility: visible",
+bwa:"border-width: auto",
+bwi:"border-width: initial",
 bwm:"border-width: medium",
 bwt:"border-width: thick",
 bwtn:"border-width: thin",
@@ -540,7 +427,7 @@ cnr2:"cursor: ns-resize",
 cnr3:"cursor: nw-resize",
 cnr4:"cursor: nwse-resize",
 cn:"clear: none",
-con:"content:\"\"",//-------------------
+con:"content:\" \"",//-------------------
 conn:"content: none",
 cn3:"content: none",
 cnone:"cursor: none",
@@ -1257,6 +1144,9 @@ mw9col :"min-width: 75%",
 mw10col :"min-width: 83.333333%",
 mw11col :"min-width: 91.666667%",
 mw12col :"min-width: 100%",
+//--------custom
+c_xgreen:'color:#00AD92',
+bgc_xgreen:'background-color:#00AD92',
 //-------color and bgc(ref:getbootstrap.com)----------
 c_nwhite:'color:white',
 c_nblack:'color:black',
@@ -2329,55 +2219,12 @@ xh100p:'max-height:100%',
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-exports.deviceAlias={
-	match:/^(mob[-|_]|tab[-|_]|lab[-|_]|hd[-|_]|print[-|_]|xs[-|_]|sm[-|_]|md[-|_]|lg[-|_]|xl[-|_])/,
-	"mob":"@media (max-width : 768px) {",
-	"tab":"@media  (min-width : 768px){",
-	"lap":"@media  (min-width : 992px) {",
-	"desk":"@media  (min-width : 1200px) {",
-	"hd":"@media  (min-width : 1408px) {",
-	"print":"@media print{",
-	"xs":"@media (max-width : 576px) {",
-	"sm":"@media  (min-width : 576px) {",
-	"md":"@media  (min-width : 768px) {",
-	"lg":"@media  (min-width : 992px) {",
-	"xl":"@media  (min-width : 1200px) {",
-};
-//Events to llok afterk
-exports.eventAlias={
-		match:/^(toggle|click|blur|change|dblclick|drag|keypress|scroll)[-|_]/,
-		allowedEvents:['toggle','click','blur','change','dblclick','drag','keypress'],
-};
-//Pseduo Alias like :hover, :targetd, :after, :before etc
-exports.pseudoAlias={
-	 		matchit:/^(ck|en|v|dis|h|a|fo|ln|af|bf|haf|hbf|afh|bfh|tg|htg|flt|fln|sel|lc|fc|nc[0-9][0-9]?[0-9]?[n]?|nlc[0-9][0-9]?[0-9]?[n]?)[-_]/,
-	 		alias:{afh:":after:hover",bfh:":before:hover",tg:"target",ck:"checked",dis:"disabled",
-			en:"enabled",htg:"hover:target",lc:"last-child",fc:"first-child",nc:"nth-child",
-			nlc:"nth-last-child",sel:":selection",flt:":first-letter",fln:":first-line",h:"hover",
-			af:":after",bf:":before",haf:"hover::after",hbf:"hover::before",fo:"focus",ln:"link",a:"active",v:"visited"}
-	 };
-
-//browser Prefix	 
-exports.browserPrefix=["-moz-","-webkit-","-ms-"];
-
-//Each time compiler check and match the following pattern. if pattern matches then 
-//Compiler will compile otherwise it will leaves it untouched.
-//dont forget to take out pseduo , elements, device prefix before passing to main compiler onlt compiles 
-//Raw and Pure classnames i.e which has just property and value
-//Not used lately
-exports.allowedPropertyAlias=/(aic|adu|tdu|bgp|bgs|bw|blw|brw|btw|btw|bbw|br|bblrs|btrrs|bblrs|btlrs|btm|bs|cw|cg|crw|fb|fs|fl[bcgis]|flse|h|l|lh|les|m|ma|mt|mr|mb|ml|xw|xh|mw|mh|mo|op|olw|olo|p|pa|pt|pr|pb|pl|pers|perso|r|t|tfo|ts|ti|va|w|ws|cc|fg|fs|o|ord|lh|orp|op|zib|brt|bl|bt|bb|ol|cr)[-]?[0-9]|c_|url[-_]|ff_|f_|(h|a|l|fo|af|bf)[-_]|bg[i]?(lg|rg)|tf|t_|an_/;
-
-
-/***/ }),
-/* 3 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const classPrinter=__webpack_require__(4);
+const classPrinter=__webpack_require__(2);
 
-const acssLiveUpdate=__webpack_require__(9);
+const acssLiveUpdate=__webpack_require__(7);
 
 window.openAcssLiveEditor=acssLiveUpdate;
 window.closeAcssLiveEditor=function(){
@@ -2390,13 +2237,13 @@ window.classPrinter=classPrinter;
 
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
  //const compiler=require("./compiler.js");
- const ACSSMediaQuery=__webpack_require__(5);
- const ACSSClone=__webpack_require__(6);
- const statementMaker=__webpack_require__(7);
+ // const ACSSMediaQuery=require("../extension/mediaquery");
+ // const ACSSClone=require("../extension/clone");
+ const statementMaker=__webpack_require__(3);
 // -------------------------------------------printer
 //view
 window.compiler=statementMaker;
@@ -2430,7 +2277,7 @@ window.compiler=statementMaker;
 		//checking of class existance
 		if(element.hasAttribute("class")){
 			//Has a group
-			if(element.getAttribute('acss')){
+			if(element.getAttribute('acss-group')){
 				var result=statementMaker.gp(element.getAttribute('acss'),element.getAttribute("class").trim());
 				if(result){
 						classPrinter.appendToStyleTag(result);
@@ -2473,7 +2320,7 @@ window.compiler=statementMaker;
 		 }//if element has class attribute
 		 
 	 //If elemet is cloning classnames
-	ACSSClone(element);
+	// ACSSClone(element);
 
 	},//eomain
 	styleSheetCompiler:function(content){
@@ -2579,168 +2426,16 @@ module.exports=classPrinter;
 
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-// -------------------------------------------query
-
-//limitation of mw extension , not able to use pseduo effect like hover , seduo
-var ACSSMediaQuery=function(query){
-	//this.element=element;
-	this.className=query.split(":")[0];
-	this.classList=query.match(/\[(.+)\]/)[1].trim();
-	this.query=query.split(":")[1].replace(/\[(.+)\]/,"").replace(/\s/g,"");
-	this.feature={
-			w:"width ",
-			mw:"min-width ",
-			xw:"max-width",
-			h:"height",
-			mh:"min-height",
-			xh:"max-height",
-			dw:"device-width ",
-			mdw:"min-device-width ",
-			xdw:"max-device-width",
-			dh:"device-height",
-			mdh:"min-device-height",
-			xdh:"max-device-height",
-			ar:"aspect-ratio",
-			mar:"min-aspect-ratio",
-			xar:"max-aspect-ratio",
-			dar:"device-aspect-ratio",
-			mdar:"min-device-aspect-ratio",
-			xdar:"max-device-aspect-ratio",
-			c:"color",
-			mc:"min-color",
-			xc:"max-color",
-			ci:"color-index",
-			mci:"min-color-index",
-			xci:"max-color-index",
-			m:"monochrome",
-			mm:"min-monochrome",
-			xm:"max-monochrome",
-			r:"resolution",
-			mr:"min-resolution",
-			xr:"max-resolution",
-			//sp:"scan:progressive",
-			//si:"scan:interace",
-			g:"grid",
-			//op:"orientation:portrait",
-			//ol:"orientation:landscape"
-  		};
-
-  		  //mq="classname:all and (color-index)[br5px w100px]"
-  		  //xmq="className:*&(ci)[br5px h100p]"
-
-	this.type={
-		a:"all",au:"aural",b:"braille",h:"handheld",p:"print",
-		pj:"projection",s:"screen",tty:"tty",tv:"tv",e:"embossed"
-	}
-};
-ACSSMediaQuery.prototype.setQuery=function(){
-
-		var that=this;
-	   var  symbolfilter=this.query.replace(/\|/g,", ")
-	           	.replace("?", " only ")
-	           	.replace("*"," all ")
-	           	.replace("!", " not ");
-	           	//for type alias
-	     if(symbolfilter.match(/(au|b|h|p|pj|s|tty|tv|e)[-|&]/)){
-	     		var typealias=symbolfilter.match(/(au|b|h|p|pj|s|tty|tv|e)[-|&]/)[1];
-				var type=this.type[typealias];
-				symbolfilter=symbolfilter.replace(typealias," "+type+" ").replace("-","");
-	     }
-	     // for every '&'
-	     symbolfilter=symbolfilter.replace(/&/g," and ");
-	     //feature handler
-	     if(symbolfilter.match(/\((w|mw|xw|h|mh|xh|dw|mdw|xdw|dh|mdh|xdh|ar|mar|xar|dar|mdar|xdar|g|c|mc|xc|ci|mci|xci|m|mm|xm|r|mr|xr)[0-9]*[\.|\\]?[0-9]*[a-z]*\)/)){
-	     	var featurreList=symbolfilter.match(/\((w|mw|xw|h|mh|xh|dw|mdw|xdw|dh|mdh|xdh|ar|mar|xar|dar|mdar|xdar|g|c|mc|xc|ci|mci|xci|m|mm|xm|r|mr|xr)[0-9]*[\.|\\]?[0-9]*[a-z]*\)/g);
-	     	featurreList.forEach(function(each){
-	     		var featurealias=each.match(/\((w|mw|xw|h|mh|xh|dw|mdw|xdw|dh|mdh|xdh|ar|mar|xar|dar|mdar|xdar|g|c|mc|xc|ci|mci|xci|m|mm|xm|r|mr|xr)[0-9]*[\.|\\]?[0-9]*[a-z]*\)/)[1];
-	     			var feature=that.feature[featurealias];
-	     			if(each.match(/[0-9]/)){
-	     				symbolfilter=symbolfilter.replace("("+featurealias,"("+feature+": ");
-	     			}else{
-	     				symbolfilter=symbolfilter.replace(each,"("+feature+")");
-	     			}
-	     	});
-	     }
-	     //static feature
-	     symbolfilter=symbolfilter.replace("(si)"," (scan: interace) ")
-	     					.replace("(sp)","(scan: progressive) ")
-	     					.replace("(op)"," (orientation: portrait) ")
-	     					.replace("(ol)"," (orientation: landscape) ");
-
-	     return symbolfilter;
-
-
-
-};
-module.exports=ACSSMediaQuery;
-//-----------------------------end of query
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-// AliasCSS, before cloning check if it has classname to clone or not
-// -------------------------------------------clone
-//Clone classname of any element to this element
-	var ACSSClone=function(element){
-
-		//checking if it has cloneElement attrinute
-	if(element.getAttribute("cloneElement")){
-		var id=element.getAttribute("cloneElement").replace("#","");
-		getClassElement=document.getElementById(id);
-		element.className=getClassElement.className+" "+element.className;
-
-	}
-	if(element.getAttribute("cloneChild") ||element.getAttribute("cloneChildOdd")||element.getAttribute("cloneChildEven")){
-		var odd="",even="", all="";
-		function getClassName(attri){
-			var  getClassElement=document.getElementById(attri.replace("#",""));
-			if(getClassElement){
-			 return getClassElement.className;
-			}else{
-				return "";
-			}
-		}
-		if(element.getAttribute("cloneChild")){
-			all=getClassName(element.getAttribute("cloneChild"));
-		}
-		if(element.getAttribute("cloneChildOdd")){
-			odd=getClassName(element.getAttribute("cloneChildOdd"));
-		}
-		if(element.getAttribute("cloneChildEven")){
-			even=getClassName(element.getAttribute("cloneChildEven"));
-		}
-
-		Array.prototype.forEach.call(element.children,function(each,i){
-			//if(each.className.match(getClassElement.className)){return true;}
-			if((i+1)%2){
-
-				oddeven=odd.replace(each.className,"");
-			}else{
-				oddeven=even.replace(each.className,"");
-			}
-			escape_all=all.replace(each.className,"");
-			each.className=oddeven+" "+escape_all+" "+each.className;
-			});
-		}
-};
-module.exports=ACSSClone;
-
-//-----------------------------end of clone
-
-/***/ }),
-/* 7 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 //imports
-var aliasProperty=__webpack_require__(0);
-var staticClassNames=__webpack_require__(1)
-var devicePesduoBrowserEventAlias=__webpack_require__(2);
-var compiler=__webpack_require__(8);
+// var aliasProperty=require('./propertyAlias');
+var staticClassNames=__webpack_require__(0)
+// var prefixAlias=require("./devicePseduoBrowserEvent");
+var prefixAlias=__webpack_require__(4);
+var compiler=__webpack_require__(5);
 
 var statementMaker={
 	//for lite Version
@@ -2757,15 +2452,15 @@ var statementMaker={
 		return this.main(classname, rename);
 	},
 	//shorthand for group function
-	gp:function(group,classnames,prefix){
-		return this.group(classnames,group,prefix);
+	gp:function(group,classnames){
+		return this.group(classnames,group);
 	},
 
 	//end for lite version
 	hasDevice:null,
 	hasSuffix:"",
 	statement:"",
-	browserPrefix:devicePesduoBrowserEventAlias.browserPrefix,
+	browserPrefix:prefixAlias.browserPrefix,
 	//Get only properties and values
 	getPropertyAndValue:function(eachClass){
 		if(!eachClass) return false;
@@ -2846,80 +2541,32 @@ var statementMaker={
 			return classname;
 		}
 	},//end of Handle suffix
+	
 
-	main:function(cn,as){
-		if(!cn) return false;
-		//console.log(this.statement);
-		this.statement=as?as:cn;
+	main:function(classname,as){
+		this.statement=as?as:classname;
+		if(classname.match(prefixAlias.deviceAlias.match)){
+			let devicePrefix=classname.match(prefixAlias.deviceAlias.match)[0];
+			this.hasDevice=devicePrefix;
+			classname=classname.replace(devicePrefix,"");
 
-		//check and handle device's for responsive
-
-		if(cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
-			// console.log(cn);
-			//console.log(devicePesduoBrowserEventAlias.deviceAlias.match);
-			//if(cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
- 				var prefix=cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)[0];
- 				cn=cn.replace(prefix,'');
- 				if(prefix.match(/^[-|_]/)){
- 					this.hasDevice=devicePesduoBrowserEventAlias.deviceAlias[prefix];
-
- 				}else{
- 					this.hasDevice=devicePesduoBrowserEventAlias.deviceAlias[prefix.replace(/[-|_]/,"")];
- 				}
-		//}
-
-    	}else{ this.hasDevice=false;}//handle device done
-
-    //handle elment prefix attribute prefix and psedo prefix
-    while(cn.match(/^(ck|en|v|dis|h|a|fo|ln|af|bf|haf|hbf|afh|bfh|tg|htg|flt|fln|sel|lc|fc|nc[0-9][0-9]?[0-9]?[n]?|nlc[0-9][0-9]?[0-9]?[n]?)[-_]|^([-][a-z1-9|_]+[-])|^([_][a-z1-9|-]+[_])/)){
-    	var prefix= cn.match(/^(ck|en|v|dis|h|a|fo|ln|af|bf|haf|hbf|afh|bfh|tg|htg|flt|fln|sel|lc|fc|nc[0-9][0-9]?[0-9]?[n]?|nlc[0-9][0-9]?[0-9]?[n]?)[-_]|([-][a-z1-9|_]+[-])|([_][a-z1-9|-]+[_])/)[0];
-    	//case Pesudo clas and selector
-    	if(prefix.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)){
-				var psedoPrefix=prefix.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)[1];
-				
-				//handle nth child 
-				if(psedoPrefix.match(/n[l]?c[0-9]+/)){
-					var matchV=psedoPrefix.match(/(n[l]?c)([0-9]+[n]?)/);
-					this.statement=this.statement+":"+devicePesduoBrowserEventAlias.pseudoAlias.alias[matchV[1]]+"("+matchV[2]+")";
-				
-
-				}else{//handle rest of pseduo..
-					this.statement=this.statement+":"+devicePesduoBrowserEventAlias.pseudoAlias.alias[cn.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)[1]];
-				}
-				//need to udate incomplte this process
-		}else if(prefix.match(/^([-][a-z1-9|_]+[-])/)){
-					//this is sttribute
-					attributePrefix=prefix.match(/^([-][a-z1-9|_]+[-])/)[0];
-					attributePrefix=attributePrefix.replace(/____/,"*=");
-					attributePrefix=attributePrefix.replace(/___/,"$=");
-					attributePrefix=attributePrefix.replace(/__/,"^=");
-					attributePrefix=attributePrefix.replace(/_/,"=");
-					attributePrefix=attributePrefix.replace(/-/g,"");
-
-					this.statement+= " ["+attributePrefix+"]";
-
-		}else if(prefix.match(/^([_][a-z1-9|-]+[_])/)){
-					//this is for element
-					elementPrefix=prefix.match(/^([_][a-z1-9|-]+[_])/)[0];
-					elementPrefix=prefix.replace(/----/g," ~ ");
-					elementPrefix=prefix.replace(/---/g," + ");
-					elementPrefix=prefix.replace(/--/g," > ");
-					elementPrefix=prefix.replace(/-/g," ");
-					this.statement+=" " + elementPrefix.replace(/_/g,'');
+		}else{
+			this.hasDevice=null;
 		}
-    	cn=cn.replace(prefix,"")
-    	//console.log(cn);
-    }//end of while
 
+		 let pseduohandler=prefixAlias.whileMatchNCall(classname);
+
+		 classname=pseduohandler[0];
+		 //this.hasBeforePrefix=pseduohandler[1];
     // Finally Handle Proeperty and Value
 							
-			var propertyNValue=this.getPropertyAndValue(cn);										 
+			var propertyNValue=this.getPropertyAndValue(classname.replace(/^[_-]/, ""));										 
 
    	//return statement to class printer or caller
 	    if(propertyNValue){
-	    	this.statement="."+this.statement+" { "+propertyNValue+"; } ";
+	    	this.statement="."+this.statement+pseduohandler[1]+" { "+propertyNValue+"; } ";
 	    	if(this.hasDevice){
-	    		
+	    		return prefixAlias.deviceHandler(this.hasDevice, this.statement);
 				return this.hasDevice+'\n'+ this.statement+ "\n } ";
 			}else{
 				return this.statement;
@@ -2927,112 +2574,26 @@ var statementMaker={
 		}else{
 			return false;
 		}
-  
-
-    
 
 },//end of main function
-group:function(cn,as,prefixs){
-	//cn is string of classnames 
-		if(!cn) return false;
-		if(!as) return false;
-		//console.log(this.statement);
-		this.statement=as;
-
-		//check and handle device's for responsive
-		if(prefixs){
-			if(prefixs.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
-			//console.log(cn);
-			//console.log(devicePesduoBrowserEventAlias.deviceAlias.match);
-			//if(cn.match(devicePesduoBrowserEventAlias.deviceAlias.match)){
- 				var prefix=prefixs.match(devicePesduoBrowserEventAlias.deviceAlias.match)[0];
- 				prefixs=prefixs.replace(prefix,'');
- 				if(prefix.match(/^[-|_]/)){
- 					this.hasDevice=devicePesduoBrowserEventAlias.deviceAlias[prefix];
-
- 				}else{
- 					this.hasDevice=devicePesduoBrowserEventAlias.deviceAlias[prefix.replace(/[-|_]/,"")];
- 				}
-		//}
-
-    	}else{ this.hasDevice=false;}//handle device done
-    		//handle elment prefix attribute prefix and psedo prefix
-    while(prefixs.match(/^(ck|en|v|dis|h|a|fo|ln|af|bf|haf|hbf|afh|bfh|tg|htg|flt|fln|sel|lc|fc|nc[0-9][0-9]?[0-9]?[n]?|nlc[0-9][0-9]?[0-9]?[n]?)[-_]|^([-][a-z1-9|_]+[-])|^([_][a-z1-9|-]+[_])/)){
-    	var prefix= prefixs.match(/^(ck|en|v|dis|h|a|fo|ln|af|bf|haf|hbf|afh|bfh|tg|htg|flt|fln|sel|lc|fc|nc[0-9][0-9]?[0-9]?[n]?|nlc[0-9][0-9]?[0-9]?[n]?)[-_]|([-][a-z1-9|_]+[-])|([_][a-z1-9|-]+[_])/)[0];
-    	//case Pesudo clas and selector
-    	if(prefix.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)){
-				var psedoPrefix=prefix.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)[1];
-				
-				//handle nth child 
-				if(psedoPrefix.match(/n[l]?c[0-9]+/)){
-					var matchV=psedoPrefix.match(/(n[l]?c)([0-9]+[n]?)/);
-					this.statement=this.statement+":"+devicePesduoBrowserEventAlias.pseudoAlias.alias[matchV[1]]+"("+matchV[2]+")";
-				
-
-				}else{//handle rest of pseduo..
-					this.statement=this.statement+":"+devicePesduoBrowserEventAlias.pseudoAlias.alias[prefixs.match(devicePesduoBrowserEventAlias.pseudoAlias.matchit)[1]];
-				}
-				//need to udate incomplte this process
-		}else if(prefix.match(/^([-][a-z1-9|_]+[-])/)){
-					//this is sttribute
-					attributePrefix=prefix.match(/^([-][a-z1-9|_]+[-])/)[0];
-					attributePrefix=attributePrefix.replace(/____/,"*=");
-					attributePrefix=attributePrefix.replace(/___/,"$=");
-					attributePrefix=attributePrefix.replace(/__/,"^=");
-					attributePrefix=attributePrefix.replace(/_/,"=");
-					attributePrefix=attributePrefix.replace(/-/g,"");
-
-					this.statement+= " ["+attributePrefix+"]";
-
-		}else if(prefix.match(/^([_][a-z1-9|-]+[_])/)){
-					//this is for element
-					elementPrefix=prefix.match(/^([_][a-z1-9|-]+[_])/)[0];
-					elementPrefix=prefix.replace(/----/g," ~ ");
-					elementPrefix=prefix.replace(/---/g," + ");
-					elementPrefix=prefix.replace(/--/g," > ");
-					elementPrefix=prefix.replace(/-/g," ");
-					this.statement+=" " + elementPrefix.replace(/_/g,'');
-		}
-    	prefixs=prefixs.replace(prefix,"")
-    	//console.log(cn);
-    }//end of while
-
-		}//end of if prefix
+group:function(classname,as){
+	if(!classname && !as) return false;
+		let statement="";
 		
+    var list=classname.trim().split(/\s+/);
 
     
-
-    // Finally Handle Proeperty and Value
-    var list=cn.trim().split(/\s+/);
-    var propertyNValues="";
     var _this=this;
     list.forEach(function(each){
-    	var result=_this.getPropertyAndValue(each);
+
+    	var result=_this.main(each,as);
     	if(result){
-    		console.log("hhhheeee");
-    		propertyNValues+=result+";\n";
+    		statement+=result+"\n";
     	}
     	
     });
+    return statement;
 							
-													 
-
-   	//return statement to class printer or caller
-	    if(propertyNValues){
-	    	this.statement="."+this.statement+" { "+propertyNValues+" } ";
-	    	if(this.hasDevice){
-	    		
-				return this.hasDevice+'\n'+ this.statement+ "\n } ";
-			}else{
-				return this.statement;
-			}
-		}else{
-			return false;
-		}
-  
-
-    
-
 },//end of group function
 
 }//end of statementMaker;
@@ -3046,14 +2607,273 @@ group:function(cn,as,prefixs){
 
 
 /***/ }),
-/* 8 */
+/* 4 */
+/***/ (function(module, exports) {
+
+
+let deviceAlias={
+	match:/^(mob|tab|lab|hd|print|xs|sm|md|lg|xl)(?=[-|_])/,
+	"mob":"@media (max-width : 768px) {",
+	"tab":"@media  (min-width : 768px){",
+	"lap":"@media  (min-width : 992px) {",
+	"desk":"@media  (min-width : 1200px) {",
+	"hd":"@media  (min-width : 1408px) {",
+	"print":"@media print{",
+	"xs":"@media (max-width : 576px) {",
+	"sm":"@media  (min-width : 576px) {",
+	"md":"@media  (min-width : 768px) {",
+	"lg":"@media  (min-width : 992px) {",
+	"xl":"@media  (min-width : 1200px) {",
+};
+ exports.deviceAlias=deviceAlias;
+ exports.browserPrefix=["-moz-","-webkit-","-ms-"];
+let flag={
+"--active":":active",//-a	
+"--after":"::after",//-af
+"--after-hover":"::after:hover",
+"--before":"::before",//-bf	
+"--before-hover":"::before:hover",//-bf	
+"--checked":":checked",	//-ck
+"--default":":default",	//-df
+"--disabled":":disabled",//-ds	
+"--empty":":empty",//-em	
+"--enabled":":enabled",//-en
+"--first-child":":first-child",	//-fc
+"--first-letter":"::first-letter",//-fl
+"--first-line":"::first-line",//-fln	
+"--first-of-type":":first-of-type",	//-fot
+"--focus":":focus",//-fo	
+"--hover":":hover",//-ho
+"--hover-after":":hover::after",//-ho
+"--hover-before":":hover::before",//-ho
+"--hover-target":":hover:target",
+"--in-range":":in-range",//-ir	
+"--indeterminate":":indeterminate",//idt
+"--invalid":":invalid",	//-in
+"--lang-":":lang(language)",//-ln
+"--last-child":":last-child",//-lc	
+"--last-of-type":":last-of-type",//-lot	
+"--link":":link",//-l	
+"--not-":":not",//-n-	
+"--nth-child-":":nth-child",//	-nc2n
+"--nth-last-child-":":nth-last-child",//-nlc2n
+"--nth-last-of-type-":":nth-last-of-type",	//-nlot2n
+"--nth-of-type-":":nth-of-type",//-not	
+"--only-of-type":":only-of-type",//-oot	
+"--only-child":":only-child",//-oc	
+"--optional":":optional",//-o	
+"--out-of-range":":out-of-range",//-oor	
+"--placeholder":"::placeholder",//-ph	
+"--read-only":":read-only",//-ro
+"--read-write":":read-write",//-rw	
+"--required":":required",//-rq	
+"--root":":root",//-rt		
+"--selection":"::selection",//-sl	
+"--target":":target",//-tg
+"--valid":":valid",//-vl
+"--visited":":visited",//-vi	
+//short flag
+"-a":":active",//-a	
+"-af":"::after",//-af
+"-afh":"::after:hover",
+"-bf":"::before",//-bf	
+"-bfh":"::before:hover",//-bf	
+"-ch":":checked",	//-ck
+"-de":":default",	//-df
+"-di":":disabled",//-ds	
+"-em":":empty",//-em	
+"-en":":enabled",//-en
+"-fc":":first-child",	//-fc
+"-fl":"::first-letter",//-fl
+"-fln":"::first-line",//-fln	
+"-fot":":first-of-type",	//-fot
+"-fo":":focus",//-fo	
+"-h":":hover",//-ho
+"-haf":":hover::after",//-ho
+"-hbf":":hover::before",//-ho
+"-htg":":hover:target",
+"-ir":":in-range",//-ir	
+"-ind":":indeterminate",//idt
+"-inv":":invalid",	//-in
+"-lan-":":lang(language)",//-ln
+"-lc":":last-child",//-lc	
+"-lot":":last-of-type",//-lot	
+"-ln":":link",//-l	
+"-n-":":not",//-n-	
+"-nc-":":nth-child",//	-nc2n
+"-nlc-":":nth-last-child",//-nlc2n
+"-nlot-":":nth-last-of-type",	//-nlot2n
+"-not-":":nth-of-type",//-not	
+"-oot":":only-of-type",//-oot	
+"-oc":":only-child",//-oc	
+"-op":":optional",//-o	
+"-oor":":out-of-range",//-oor	
+"-ph":"::placeholder",//-ph	
+"-ro":":read-only",//-ro
+"-rw":":read-write",//-rw	
+"-r":":required",//-rq	
+"-rt":":root",//-rt		
+"-s":"::selection",//-sl	
+"-tg":":target",//-tg
+"-v":":valid",//-vl
+"-vi":":visited",//-vi	
+};
+
+let matchAndCall={
+	 element:{
+	 	match:/^_[_]?[a-z0-9_]+(?=[_|-])/,
+	 	callFunction:elementHandler,
+
+	 },
+	 pseduoFullFlag:{
+	 	match:/(^--(?!n)[a-z0-9]+(-child|-of-range|-of-type|-before|-after|-hover|-letter|-line|-range|-target|-only|-write)?)(?=[-|_])/,
+	 	callFunction:pseduoFullFlag
+	 },
+	 pseduoNot:{
+	 	match:/(^--not-([a-z0-9]+)(?=[-|_]))/,
+	 	callFunction:pseduoHandlerNot,
+	 },
+	pseduoNthChild:{
+		match:/(^--nth(-child-|last-child-|last-of-type|of-type-))([0-9]+[n]?)(?=[-|_])/,
+		callFunction:pseduoHandlerNthChild,
+	},
+	 pseduoShortNth:{
+	 	match:/^(-(n|nc|nlc|nlot|not)-)([a-z0-9]+)(?=[-|_])/,
+	 	callFunction:pseduoShortNth,
+	 },
+	 pseduoShort:{
+	 	match:/^(-(a|af|afh|bf|bfh|ch|de|di|em|en|fc|fl|fln|fot|fo|h|haf|abf|htg|ir|ind|inv|lc|lot|ln|oot|oc|oor|ph|ro|rw|r|rt|s|tg|v|vi))(?=[-|_])/,
+	 	callFunction:pseduoShort,
+	 }
+
+
+}
+
+function deviceHandler(alias, content){
+	if( deviceAlias.hasOwnProperty(alias)){
+		return deviceAlias[alias]+'\n'+ content+ "\n } ";
+	}else{
+
+	}
+}
+function pseduoFullFlag(classname){
+	
+		let alias=classname.match(matchAndCall.pseduoFullFlag.match)[0];
+			if(flag.hasOwnProperty(alias)){
+				pseduo=flag[alias];
+				classname=classname.replace(alias,"");
+				return [classname, flag[alias]];
+			}
+
+			return [classname,'']
+	
+
+}
+function pseduoHandlerNthChild (classname){
+			let pseduo="";
+			let m=classname.match(matchAndCall.pseduoNthChild.match);
+			let alias=m[1];
+			let classnamepre=m[0];
+			let n=m[3];
+
+			if(flag.hasOwnProperty(alias)){
+				pseduo=flag[alias]+"("+n+")";
+				classname=classname.replace(classnamepre,"");
+			}
+
+		return [classname, pseduo];
+}
+function pseduoHandlerNot (classname){
+			let alias=classname.match(matchAndCall.pseduoNot.match)[0];
+			 let pseduo=":not("+classname.match(matchAndCall.pseduoNot.match)[2]+")";
+ 			classname=classname.replace(alias,"");
+
+ 			return [classname, pseduo]
+
+			
+}
+function pseduoShortNth(classname){
+	let match=classname.match(matchAndCall.pseduoShortNth.match);
+			 if(flag.hasOwnProperty(match[1])){
+			 	return [classname.replace(match[0],''), flag[match[1]]+"("+match[3]+")"];
+			 }
+ 			
+
+ 			return [classname, ""];
+} 
+function pseduoShort(classname){
+	let match=classname.match(matchAndCall.pseduoShort.match);
+			 if(flag.hasOwnProperty(match[1])){
+			 	return [classname.replace(match[0],''), flag[match[1]]];
+			 }
+ 			
+
+ 			return [classname, ""];
+} 
+function elementHandler(classname){
+	let alias=classname.match(matchAndCall.element.match)[0];
+	if(alias){
+		  let elfy=alias.replace(/____/g," ~ ")
+						.replace(/___/g," + ")
+						.replace(/__/g," ")
+						.replace(/_/g," > ").trim()
+
+		return [ classname.replace(alias,"")," "+elfy];
+	}
+	return [classname, ""];
+}
+
+// ---------------while-Match---
+
+function whileMatchNCall(classname){
+	let before='';
+	
+	while(classname){
+		let match=false;
+		for(let key in matchAndCall){
+			if(classname.match(matchAndCall[key].match)){
+				match=true;
+				let result=matchAndCall[key].callFunction(classname);
+				if(!result[1]){
+					match=false; 
+				} 
+				classname=result[0];
+				before+=result[1];
+				break;
+			}else{
+				
+			}
+		}
+		// console.log(match);
+	if(!match) break; 
+	}
+
+	return [classname, before];
+	
+	
+}
+
+//-----------whiel-match-end
+exports.whileMatchNCall=whileMatchNCall;
+exports.pseduoFullFlag=pseduoFullFlag;
+exports.pseduoShort=pseduoShort;
+exports.pseduoShortNth=pseduoShortNth;
+exports.deviceHandler=deviceHandler;
+exports.elementHandler=elementHandler;
+exports.pseduoHandlerNthChild=pseduoHandlerNthChild;
+exports.pseduoHandlerNot=pseduoHandlerNot;
+exports.matchAndCall;
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 //imports
-var aliasProperty=__webpack_require__(0);
-var staticClassNames=__webpack_require__(1)
-var devicePesduoBrowserEventAlias=__webpack_require__(2);
+var aliasProperty=__webpack_require__(6);
+var staticClassNames=__webpack_require__(0)
+// var devicePesduoBrowserEventAlias=require("./devicePseduoBrowserEvent");
 
 //locals
 
@@ -3651,13 +3471,140 @@ module.exports=compiler;
  	
 
 /***/ }),
-/* 9 */
+/* 6 */
+/***/ (function(module, exports) {
+
+//var AliasProperty={
+	module.exports={
+
+	//Property Alias Object
+
+		"an":"animation",//-------------##
+		"adl":"animation-delay",//----------------##
+		"adu":"animation-duration",//-------------##
+		"aic":"animation-iteration-count",
+		//"an":"animation-name",
+		"all":"all",
+		"atf":"animation-timimg-function",//atfcb0d1-0d7-1-0d1=animation-timimg-function:cubic-bezeir(0.1,0.7,1,0.1) for negative value use -- or _-1d5//
+		"b"  :"border",
+		"bb"  :"border-bottom",
+		"bbc"  :"border-bottom-color",
+		"bblr":"border-bottom-left-radius",
+		"bbrr": "border-bottom-right-radius",
+		"bbw"  :"border-bottom-width",
+		"bc" :"border-color",
+		"bg"  :"background",//-------
+		"bgc"  :"background-color",//-----------
+		"bgi"  :"background-image",//----------
+		"bgp"  :"background-position",//----------
+		"bgs":"background-size",//-----------
+		"bl"  :"border-left",
+		"blc"  :"border-left-color",
+		"brt"  :"border-right",//--------------#
+		"brc"  :"border-right-color",//---------------
+		"br"  :"border-radius",
+		"brw"  :"border-right-width",
+		"bs"  :"border-spacing",
+		"bt"  :"border-top",
+		"btc"  :"border-top-color",
+		"btlr":"border-top-left-radius",
+		"btm"  :"bottom",//-----------------------#
+		"btrr": "border-top-right-radius",
+		"btw"  :"border-top-width",
+		"bw"  :"border-width",
+		"bxs":"box-shadow",//----------------------------#
+		"c"  :"color",
+		"cc":"column-count",
+		"cg":"column-gap",
+		"ci"  :"counter-increment",
+		"cols":"columns",//------------#
+		"con"  :"content",//string//------------#
+		"cp"  :"clip",//-----------
+		"cr"   :"counter-reset",//----------
+		"cr2":"column-rule",//-----------#
+		"crc":"column-rule-color",//#
+		"crw":"column-rule-width",//#
+		//"c"  :"cursor",
+		"cw":"column-width",
+		"f_"    :"font",
+		"f":"flex",
+		"fb":"flex-basis",
+		"ff"  :"font-family",
+		"fg":"flex-grow",
+		"fl":"filter",//--------------
+		"fs"  :"font-size",
+		"fsk":"flex-shrink",//--------------
+		"fsa":"font-size-adjust",
+		"h":"height",
+		"i":"icon",
+		"io":"image-orientation",
+		"ir":"image-resolution",
+		"key":"@keyframes",
+		"l"  :"left",
+		"les"  :"letter-spacing",//--------
+		"lh"  :"line-height",
+		"ls"  :"list-style",
+		"lsi"  :"list-style-image",
+		"m"  :"margin",
+		"ma" :"margin",
+		"mb"  :"margin-bottom",
+		"mh"  :"min-height",
+		"ml"  :"margin-left",
+		"mo"  :"marker-offset",
+		"mr"  :"margin-right",
+		"mt"  :"margin-top",
+		"mw"  :"min-width",
+		"ord":"order",//-------
+		"ol"  :"outline",//-------
+		"olc"  :"outline-color",//-----
+		"olo":"outline-offset",//---------
+		"olw"  :"outline-width",//--------
+		"op":"object-position",//-----------
+		"o":"opacity",
+		"orp":"orphans",//------
+		"p"  :"padding",
+		"pb"  :"padding-bottom",
+		"pers":"perspective",//--------
+		"perso":"perspective-origin",
+		"pl"  :"padding-left",
+		"pr"  :"padding-right",
+		"pt"  :"padding-top",
+		"q"    :"quotes",//string
+		"r"  :"right",
+		"t"  :"top",
+		"t_": "transition",//---------
+		"tdl":"transition-delay",//---
+		"tdu":"transition-duration",//-----
+		"tf":"transform",//----
+		"tfo":"transform-origin",//--------
+		"tbs":"tab-size",//------------*
+		"ttf":"transition-timing-function",
+		"ta":"text-align",//string
+		"tdc":"text-decoration-color",
+		"te":"text-emphasis",
+		"tec":"text-emphasis-color",
+		"ti" : "text-indent",
+		"to":"text-overflow",//string
+		"ts" :"text-shadow",
+		"va":"vertical-align"	,
+		"w" :"width",
+		"ws":"word-spacing",
+		"xh"  :"max-height",//------
+		"xw"  :"max-width",//----------------
+		"zi":"z-index",
+		
+
+
+};//endof Property Alias
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 
 function openAcssRibbionBar(){
 var	acssDesignBarLocked=false;
-var currentElement=document.body;
+var currentElement=null;
 var acssInputField;
 //var infoMsg;
 // var infoEle;
@@ -3724,6 +3671,7 @@ function buttonRole(){
         var buttonPrev=document.getElementById("buttonPrev");
         var buttonNext=document.getElementById("buttonNext");
         var buttonChild=document.getElementById("buttonChild"); 
+        var buttonCopy=document.getElementById('acssLiveUpadateCopy');
   
        
         nextElement=function(){
@@ -3752,7 +3700,7 @@ function buttonRole(){
                  //settleOldClass(currentElement);
             }else{
                 
-                infoMsg.innerHTML="("+"<span style='color:red'>It has no next sibling Element</span>)";
+                infoMsg.innerHTML="<span style='color:orange'>Has no next sibling Element</span>";
                 return false;
             }
         };
@@ -3766,7 +3714,7 @@ function buttonRole(){
                  //settleOldClass(currentElement);
             }else{
                 //console.log("clicked");
-                infoMsg.innerHTML="("+"<span style='color:red'>It has no Previous sibling Element</span>)";
+                infoMsg.innerHTML="<span style='color:orange'>Has no Previous sibling Element</span>";
                 return false;
             }
         };
@@ -3780,7 +3728,7 @@ function buttonRole(){
                  //settleOldClass(currentElement);
             }else{
                 //console.log("clicked");
-                infoMsg.innerHTML="("+"<span style='color:red'>It has no Parent Element</span>)";
+                infoMsg.innerHTML="<span style='color:orange'>Has no Parent Element</span>";
                 return false;
             }
         };
@@ -3794,11 +3742,35 @@ function buttonRole(){
                  //settleOldClass(currentElement);
             }else{
                 //console.log("clicked");
-                infoMsg.innerHTML="("+"<span style='color:red'>It has no child Element</span>)";
+                infoMsg.innerHTML="<span style='color:orange'>Has no child Element</span>";
                 return false;
             }
         };
 
+        buttonCopy.onclick=function(){
+            if(currentElement){
+                let textarea=document.createElement('textarea');
+                document.body.appendChild(textarea);
+                textarea.value=currentElement.outerHTML;
+                textarea.select();
+                if(document.execCommand("copy")){
+                    console.log("Successfully! Copied to Clipboard");
+                    let title=document.getElementById('acss-title');
+                    title.style.color="green";
+                    title.innerText="Successfully copied to clipboard!"
+
+                    let st=setTimeout(function(){
+                        title.style.color="initial";
+                    title.innerText="Acss Live Update 1.0.3";
+                    clearTimeout(st);
+                    },3000)
+                };
+                textarea.parentNode.removeChild(textarea);
+                }
+            };
+             
+               
+  
         // buttonSave.onclick=function(){
         //     //doing nothigs now
         // };
@@ -3822,7 +3794,7 @@ function quickChangeSelectOnClick(element){
 		                 //this.style.boxShadow="0px 0px 5px #ccc";
 		                 //settleOldClass();
 		                 infoEle.innerText="Element on Target :- "+this.nodeName.toLowerCase()+"#"+this.id;
-
+                         infoMsg.innerHTML="";
 		                 infoBarMsg="";
 		                 setClassToField();
 		            }
@@ -3842,13 +3814,14 @@ function quickChangeSelectOnClick(element){
 	            if(document.getElementById(this.value)){
 	            	
 	                currentElement=document.getElementById(this.value);
-	                infoMsg='';
+	                
 	                infoEle.innerText="Element on Target :- "+currentElement.nodeName.toLowerCase()+"#"+currentElement.id;
 	                setClassToField();
+                    infoMsg.innerHTML="";
 	                //currentElement.element.style.boxShadow="0px 0px 5px #ccc";
 	                //settleOldClass(currentElement);
 	            }else{
-	               infoMsg="("+"<span style='color:red'>There is no element with id:"+this.value+"</span>)";
+	               infoMsg.innerHTML="<span style='color:orange'> No elemnt with id:"+this.value+"</span>";
 	            }
 	            
 	        };
@@ -3873,18 +3846,18 @@ var oldElement="";
       acssInputHandler();
       
     document.getElementById("quickChangeMin").onclick=function(){
-	if(this.innerHTML=='-'){
+	if(this.innerHTML=='min'){
 		
-		this.innerHTML="&equiv;";
+		this.innerHTML="max";
 		 document.getElementById("quickChangeBox").style.height="20px";
          document.getElementById("acss-live-editor-content").style.display="none";
-         document.getElementById("acss-live-editor-footer").style.display="none";
+         // document.getElementById("acss-live-editor-footer").style.display="none";
 		
 	}else{
         document.getElementById("quickChangeBox").style.height="200px";
          document.getElementById("acss-live-editor-content").style.display="block";
-         document.getElementById("acss-live-editor-footer").style.display="block";
-		this.innerHTML="-";
+         // document.getElementById("acss-live-editor-footer").style.display="block";
+		this.innerHTML="min";
 		 
 	}
 };
@@ -3910,39 +3883,76 @@ document.getElementById("quickChangeClose").onclick=function(){
 
 // --------------------------------HTML Display-----------------------------
 function launchQuickChange(){
-var newinnerHTML=' <div sid="alias-css-live-editor" id="quickChangeBox" class="dont-include zi1111111111 bxs0px0px5px2pxc_00000000005 _input_lhi2 _button_lhi2 ffi2 fs12px bgc_hfff w200px h200px b1px_s_c_00000000002 br5px r5px btm5px pf">\
-    <div sid="alias-css-live-editorheader" id="quickChangeBoxheader" class="bgc_hccc h20px bb1px_s_c_00000000002 h_cm dont-include">\
-        <span class="fs12px m0px5px ff_arial dont-include">Acss Live Update 1.2</span>\
-        <div class="dib fr m0p5px dont-include">\
-            <button id="quickChangeMin" class="br0px bgc_heee fw9 dont-include ">-</button>\
-            <button id="quickChangeClose" class="br0px bgc_heee fw9 dont-include">&times;</button>\
+// var newinnerHTML=' <div sid="alias-css-live-editor" id="quickChangeBox" class="dont-include zi1111111111 bxs0px0px5px2pxc_00000000005 _input_lhi2 _button_lhi2 ffi2 fs12px bgc_hfff w200px h200px b1px_s_c_00000000002 br5px r5px btm5px pf">\
+//     <div sid="alias-css-live-editorheader" id="quickChangeBoxheader" class="bgc_hccc h20px bb1px_s_c_00000000002 h_cm dont-include">\
+//         <span class="fs12px m0px5px ff_arial dont-include">Acss Live Update 1.2</span>\
+//         <div class="dib fr m0p5px dont-include">\
+//             <button id="quickChangeMin" class="br0px bgc_heee fw9 dont-include ">-</button>\
+//             <button id="quickChangeClose" class="br0px bgc_heee fw9 dont-include">&times;</button>\
+//         </div>\
+//     </div>\
+//     <div id="acss-live-editor-content"class="bgc_heee h157px bb1px_s_c_00000000002 tac dont-include">\
+//         <p class="fs13px m0px p3px dont-include">\
+//             Click element -or-<input type="text" style="" id="quickChangeIdInput" class="dont-include w85px" placeholder="input id of element">\
+//         </p>\
+//          <hr class=" dont-include m4px0px">\
+//         <div class="tal dont-include ">\
+//             <small id="infoEle"class="ff_arial fs11px tac dont-include">Input Aliascss classnames, press enter</small><small id="infoMsg" class="ffcu c_nred fs11px  dont-include"></small>\
+//                 <textarea id="quickChangeAcssInput" class="bglgtc_nwhite_c_nskyblue dib dont-include h80px w195px oln" placeholder="Input ACSS class names " > </textarea>\
+//         </div>\
+//     </div>\
+//     <div  id="acss-live-editor-footer" class="bgc_hccc h20px bb1px_s_c_00000000002 dont-include">\
+//         <div id="selectOption" class="dont-include dib fs11px m0px5px"> \
+//                 <button class="br0px dont-include"  id="buttonPrev">Prev</button>\
+//                 <button class="bx0px dont-include"  id="buttonNext">Next</button>\
+//                 <button class="br0px dont-include"  id="buttonParent">Parent</button>\
+//                 <button class="br0px dont-include"  id="buttonChild">Child</button>\
+//         </div>\
+//     </div>\
+// </div>';
+
+var newinnerHTML=`<div sid="alias-css-live-editor" id="quickChangeBox" class="bsbb dont-include zi1111111111 pf bxs0px0px1px0pxc_00000000005 _input-lhi2 _button-lhi2 ffi2 fs12px bgc_hfff w300px h200px b1px_s_c_00000000002 br5px r5px btm5px bgc_h505050 ">\
+    <!--Header  -->\
+    <div sid="alias-css-live-editorheader" id="quickChangeBoxheader" class="bsbb  br5px5px0p0p bgc_hccc h15px bb1px_s_c_00000000002 -h-cm mb10px dont-include">\
+        <span id="acss-title" class="bsbb fs12px m0px5px ff_arial dont-include">Acss Live Update 1.0.3</span>\
+        <div class="bsbb  dib fr m0px mt-1px dont-include mr5px">\
+            <button id="quickChangeMin" class="bsbb  b0d5px_s_c_h535353 bgc_he3e3e3 --hover-bgc_warning w30px h12px br10px  -fo-oln  dont-include p0px ff_verdana fs9px">min</button>\
+            <button id="quickChangeClose" class="bsbb  b0d5px_s_c_h535353 bgc_he3e3e3 w30px --hover-bgc_danger h12px br10px  -fo-oln dont-include p0px ff_verdana fs9px">close</button>\
         </div>\
     </div>\
-    <div id="acss-live-editor-content"class="bgc_heee h157px bb1px_s_c_00000000002 tac dont-include">\
-        <p class="fs13px m0px p3px dont-include">\
-            Click element -or-<input type="text" style="" id="quickChangeIdInput" class="dont-include w85px" placeholder="input id of element">\
-        </p>\
-         <hr class=" dont-include m4px0px">\
-        <div class="tal dont-include ">\
-            <small id="infoEle"class="ff_arial fs11px tac dont-include">Input Aliascss classnames, press enter</small><small id="infoMsg" class="ffcu c_nred fs11px  dont-include"></small>\
-                <textarea id="quickChangeAcssInput" class="bglgtc_nwhite_c_nskyblue dib dont-include h80px w195px oln" placeholder="Input ACSS class names " > </textarea>\
+    <div class="bsbb  w100p dont-include" id="acss-live-editor-content">\
+        <!-- input area  -->\
+        <div class="bsbb  dont-include w75p fl h160px brt1px_s_c_h606060 p10px">\
+            <!-- input -->\
+            <p class="bsbb fs13px m0px p3px dont-include ">\
+            <span class="c_hbbb dont-include ">Click element-or-input id</span> <input type="text" style="" spellcheck="false" id="quickChangeIdInput" class="dont-include w195px b1px-sc_h6060606 br15px bgc_h909090 -fo-oln pl10px" placeholder="input id of element">\
+            </p>\
+                <!-- text-are -->\
+            <div class="bsbb tal dont-include ">\
+            <small id="infoEle"class="c_hbbb ff_arial fs11px tac dont-include">Input classname/s, press enter</small><small id="infoMsg" class=" fs11px  dont-include"></small>\
+                <textarea id="quickChangeAcssInput" class=" dib dont-include bgc_h909090 ff_courier h90px w100p oln c_h333333 fw9" placeholder="Input ACSS class names " spellcheck="false"> </textarea>\
+            </div>\
         </div>\
-    </div>\
-    <div  id="acss-live-editor-footer" class="bgc_hccc h20px bb1px_s_c_00000000002 dont-include">\
-        <div id="selectOption" class="dont-include dib fs11px m0px5px"> \
-                <button class="br0px dont-include"  id="buttonPrev">Prev</button>\
-                <button class="bx0px dont-include"  id="buttonNext">Next</button>\
-                <button class="br0px dont-include"  id="buttonParent">Parent</button>\
-                <button class="br0px dont-include"  id="buttonChild">Child</button>\
+        <!-- Buttons -->
+        <div class="w20p dib fr mr5px dont-include _button-ln _button-ff_verdana _button-w60px _button-bgc_h505050 _button-c_hccc  _button-br50px _button-h-c_ngrey _button-fo-oln _button-fw1  _button-fs9px _button-mb10px">\
+            <button class=" dont-include"  id="buttonPrev">Prev</button>\
+            <button class=" dont-include"  id="buttonNext">Next</button>\
+            <button class=" dont-include"  id="buttonParent">Parent</button>\
+            <button class=" dont-include"  id="buttonChild">Child</button>\
+            <br class="dont-include"><br>\
+            <button id="acssLiveUpadateCopy" class=" dont-include"  id="buttonChild">copy</button>\
         </div>\
+        
     </div>\
-</div>';
+</div>`;
 	
 var box=document.createElement("div");
 box.innerHTML=newinnerHTML;
 document.body.append(box);
 classPrinter.launch(box);
 acssDraggable(document.getElementById("quickChangeBox"));
+
+
 };
 
 init();

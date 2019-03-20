@@ -9,6 +9,32 @@ const dist=path.join(__dirname,"dist",'acss.js');
 
 let acssCompiler={
 
+
+	compileAcssString:function(st,group,pre){
+		if(group){
+			return statementMaker.group(st,group,pre);
+		}
+		let statement='';
+		if(!st.trim()) return false;
+		var ClassList=st.split(/\s+/);
+		ClassList.forEach(function(eachClass){
+					// if(classPrinter.classListAll.indexOf(eachClass)==-1){
+						//add to classlist for refrerence
+						// classPrinter.classListAll.push(eachClass);
+						
+						// var result=compiler.main(eachClass);
+						 var result=statementMaker.main(eachClass);
+						 // console.log(result);
+
+						if(result){
+								statement+=(result+ "\n");
+						}
+					// }
+				});
+		return statement;
+
+	},
+
 	//cop file in given location
 	dist:function(path){
 		fs.copyFileSync(dist, path);
@@ -121,16 +147,26 @@ let acssCompiler={
 			
 		 });
 
-
-		var result=sass.renderSync({
-			data:acssStm
-		});
+			try{
+				var result=sass.renderSync({
+					data:acssStm
+				});
+				return result.css;
+			} catch (e){
+				console.log("Could not able to compile: Sass render Error: Make sure you have valid acss/scss");
+				console.log(e);
+				return null;
+			}
+		// var result=sass.renderSync({
+		// 	data:acssStm
+		// });
 		
-		return result.css;
+		// return result.css;
 
 	},
 	compileStyleSheet:function(file,output){
 		let compiledContent=this.compileStyleSheetRaw(file);
+		if(!compiledContent) return false;
 
 			try {
 				
@@ -165,7 +201,7 @@ let acssCompiler={
 			
 
 	},
-	writeToFile:function(file){
+	writeToFile:function(file,append){
 			let compileStatement=null;
 			//For styleSheet .acs
 			
@@ -179,9 +215,16 @@ let acssCompiler={
 			}
 
 			
-			
+			if(compileStatement===null) return false;
 			
 			try {
+				//----------append or not------
+				if(append!==true){
+					if(fs.existsSync(this.output)){
+						fs.truncateSync(this.output);
+					 }
+					}
+				//---------end append or not	
 				
 		  		fs.appendFileSync(this.output, `\n/* AliasCSS : These are classnames compiled  from ${path.basename(file)}*/\n\n`+compileStatement);
 		  		console.log("Successfully  compiled acss from " + file);
@@ -200,11 +243,7 @@ let acssCompiler={
 		}
 		
 		if(this.input && this.output){
-			if(append!==true){
-				if(fs.existsSync(this.output)){
-					fs.truncateSync(this.output);
-				 }
-			}
+			
 
 		//case 1: if its array
 		if(Array.isArray(this.input)){
@@ -238,7 +277,7 @@ let acssCompiler={
 			}
 			if(stats.isFile()){
 				 
-				this.writeToFile(this.input);
+				this.writeToFile(this.input,append);
 				return;
 			}
 		});

@@ -1,7 +1,7 @@
 
 function openAcssRibbionBar(){
 var	acssDesignBarLocked=false;
-var currentElement=document.body;
+var currentElement=null;
 var acssInputField;
 //var infoMsg;
 // var infoEle;
@@ -68,6 +68,7 @@ function buttonRole(){
         var buttonPrev=document.getElementById("buttonPrev");
         var buttonNext=document.getElementById("buttonNext");
         var buttonChild=document.getElementById("buttonChild"); 
+        var buttonCopy=document.getElementById('acssLiveUpadateCopy');
   
        
         nextElement=function(){
@@ -96,7 +97,7 @@ function buttonRole(){
                  //settleOldClass(currentElement);
             }else{
                 
-                infoMsg.innerHTML="("+"<span style='color:red'>It has no next sibling Element</span>)";
+                infoMsg.innerHTML="<span style='color:orange'>Has no next sibling Element</span>";
                 return false;
             }
         };
@@ -110,7 +111,7 @@ function buttonRole(){
                  //settleOldClass(currentElement);
             }else{
                 //console.log("clicked");
-                infoMsg.innerHTML="("+"<span style='color:red'>It has no Previous sibling Element</span>)";
+                infoMsg.innerHTML="<span style='color:orange'>Has no Previous sibling Element</span>";
                 return false;
             }
         };
@@ -124,7 +125,7 @@ function buttonRole(){
                  //settleOldClass(currentElement);
             }else{
                 //console.log("clicked");
-                infoMsg.innerHTML="("+"<span style='color:red'>It has no Parent Element</span>)";
+                infoMsg.innerHTML="<span style='color:orange'>Has no Parent Element</span>";
                 return false;
             }
         };
@@ -138,11 +139,35 @@ function buttonRole(){
                  //settleOldClass(currentElement);
             }else{
                 //console.log("clicked");
-                infoMsg.innerHTML="("+"<span style='color:red'>It has no child Element</span>)";
+                infoMsg.innerHTML="<span style='color:orange'>Has no child Element</span>";
                 return false;
             }
         };
 
+        buttonCopy.onclick=function(){
+            if(currentElement){
+                let textarea=document.createElement('textarea');
+                document.body.appendChild(textarea);
+                textarea.value=currentElement.outerHTML;
+                textarea.select();
+                if(document.execCommand("copy")){
+                    console.log("Successfully! Copied to Clipboard");
+                    let title=document.getElementById('acss-title');
+                    title.style.color="green";
+                    title.innerText="Successfully copied to clipboard!"
+
+                    let st=setTimeout(function(){
+                        title.style.color="initial";
+                    title.innerText="Acss Live Update 1.0.3";
+                    clearTimeout(st);
+                    },3000)
+                };
+                textarea.parentNode.removeChild(textarea);
+                }
+            };
+             
+               
+  
         // buttonSave.onclick=function(){
         //     //doing nothigs now
         // };
@@ -166,7 +191,7 @@ function quickChangeSelectOnClick(element){
 		                 //this.style.boxShadow="0px 0px 5px #ccc";
 		                 //settleOldClass();
 		                 infoEle.innerText="Element on Target :- "+this.nodeName.toLowerCase()+"#"+this.id;
-
+                         infoMsg.innerHTML="";
 		                 infoBarMsg="";
 		                 setClassToField();
 		            }
@@ -186,13 +211,14 @@ function quickChangeSelectOnClick(element){
 	            if(document.getElementById(this.value)){
 	            	
 	                currentElement=document.getElementById(this.value);
-	                infoMsg='';
+	                
 	                infoEle.innerText="Element on Target :- "+currentElement.nodeName.toLowerCase()+"#"+currentElement.id;
 	                setClassToField();
+                    infoMsg.innerHTML="";
 	                //currentElement.element.style.boxShadow="0px 0px 5px #ccc";
 	                //settleOldClass(currentElement);
 	            }else{
-	               infoMsg="("+"<span style='color:red'>There is no element with id:"+this.value+"</span>)";
+	               infoMsg.innerHTML="<span style='color:orange'> No elemnt with id:"+this.value+"</span>";
 	            }
 	            
 	        };
@@ -217,18 +243,18 @@ var oldElement="";
       acssInputHandler();
       
     document.getElementById("quickChangeMin").onclick=function(){
-	if(this.innerHTML=='-'){
+	if(this.innerHTML=='min'){
 		
-		this.innerHTML="&equiv;";
+		this.innerHTML="max";
 		 document.getElementById("quickChangeBox").style.height="20px";
          document.getElementById("acss-live-editor-content").style.display="none";
-         document.getElementById("acss-live-editor-footer").style.display="none";
+         // document.getElementById("acss-live-editor-footer").style.display="none";
 		
 	}else{
         document.getElementById("quickChangeBox").style.height="200px";
          document.getElementById("acss-live-editor-content").style.display="block";
-         document.getElementById("acss-live-editor-footer").style.display="block";
-		this.innerHTML="-";
+         // document.getElementById("acss-live-editor-footer").style.display="block";
+		this.innerHTML="min";
 		 
 	}
 };
@@ -254,39 +280,76 @@ document.getElementById("quickChangeClose").onclick=function(){
 
 // --------------------------------HTML Display-----------------------------
 function launchQuickChange(){
-var newinnerHTML=' <div sid="alias-css-live-editor" id="quickChangeBox" class="dont-include zi1111111111 bxs0px0px5px2pxc_00000000005 _input_lhi2 _button_lhi2 ffi2 fs12px bgc_hfff w200px h200px b1px_s_c_00000000002 br5px r5px btm5px pf">\
-    <div sid="alias-css-live-editorheader" id="quickChangeBoxheader" class="bgc_hccc h20px bb1px_s_c_00000000002 h_cm dont-include">\
-        <span class="fs12px m0px5px ff_arial dont-include">Acss Live Update 1.2</span>\
-        <div class="dib fr m0p5px dont-include">\
-            <button id="quickChangeMin" class="br0px bgc_heee fw9 dont-include ">-</button>\
-            <button id="quickChangeClose" class="br0px bgc_heee fw9 dont-include">&times;</button>\
+// var newinnerHTML=' <div sid="alias-css-live-editor" id="quickChangeBox" class="dont-include zi1111111111 bxs0px0px5px2pxc_00000000005 _input_lhi2 _button_lhi2 ffi2 fs12px bgc_hfff w200px h200px b1px_s_c_00000000002 br5px r5px btm5px pf">\
+//     <div sid="alias-css-live-editorheader" id="quickChangeBoxheader" class="bgc_hccc h20px bb1px_s_c_00000000002 h_cm dont-include">\
+//         <span class="fs12px m0px5px ff_arial dont-include">Acss Live Update 1.2</span>\
+//         <div class="dib fr m0p5px dont-include">\
+//             <button id="quickChangeMin" class="br0px bgc_heee fw9 dont-include ">-</button>\
+//             <button id="quickChangeClose" class="br0px bgc_heee fw9 dont-include">&times;</button>\
+//         </div>\
+//     </div>\
+//     <div id="acss-live-editor-content"class="bgc_heee h157px bb1px_s_c_00000000002 tac dont-include">\
+//         <p class="fs13px m0px p3px dont-include">\
+//             Click element -or-<input type="text" style="" id="quickChangeIdInput" class="dont-include w85px" placeholder="input id of element">\
+//         </p>\
+//          <hr class=" dont-include m4px0px">\
+//         <div class="tal dont-include ">\
+//             <small id="infoEle"class="ff_arial fs11px tac dont-include">Input Aliascss classnames, press enter</small><small id="infoMsg" class="ffcu c_nred fs11px  dont-include"></small>\
+//                 <textarea id="quickChangeAcssInput" class="bglgtc_nwhite_c_nskyblue dib dont-include h80px w195px oln" placeholder="Input ACSS class names " > </textarea>\
+//         </div>\
+//     </div>\
+//     <div  id="acss-live-editor-footer" class="bgc_hccc h20px bb1px_s_c_00000000002 dont-include">\
+//         <div id="selectOption" class="dont-include dib fs11px m0px5px"> \
+//                 <button class="br0px dont-include"  id="buttonPrev">Prev</button>\
+//                 <button class="bx0px dont-include"  id="buttonNext">Next</button>\
+//                 <button class="br0px dont-include"  id="buttonParent">Parent</button>\
+//                 <button class="br0px dont-include"  id="buttonChild">Child</button>\
+//         </div>\
+//     </div>\
+// </div>';
+
+var newinnerHTML=`<div sid="alias-css-live-editor" id="quickChangeBox" class="bsbb dont-include zi1111111111 pf bxs0px0px1px0pxc_00000000005 _input-lhi2 _button-lhi2 ffi2 fs12px bgc_hfff w300px h200px b1px_s_c_00000000002 br5px r5px btm5px bgc_h505050 ">\
+    <!--Header  -->\
+    <div sid="alias-css-live-editorheader" id="quickChangeBoxheader" class="bsbb  br5px5px0p0p bgc_hccc h15px bb1px_s_c_00000000002 -h-cm mb10px dont-include">\
+        <span id="acss-title" class="bsbb fs12px m0px5px ff_arial dont-include">Acss Live Update 1.0.3</span>\
+        <div class="bsbb  dib fr m0px mt-1px dont-include mr5px">\
+            <button id="quickChangeMin" class="bsbb  b0d5px_s_c_h535353 bgc_he3e3e3 --hover-bgc_warning w30px h12px br10px  -fo-oln  dont-include p0px ff_verdana fs9px">min</button>\
+            <button id="quickChangeClose" class="bsbb  b0d5px_s_c_h535353 bgc_he3e3e3 w30px --hover-bgc_danger h12px br10px  -fo-oln dont-include p0px ff_verdana fs9px">close</button>\
         </div>\
     </div>\
-    <div id="acss-live-editor-content"class="bgc_heee h157px bb1px_s_c_00000000002 tac dont-include">\
-        <p class="fs13px m0px p3px dont-include">\
-            Click element -or-<input type="text" style="" id="quickChangeIdInput" class="dont-include w85px" placeholder="input id of element">\
-        </p>\
-         <hr class=" dont-include m4px0px">\
-        <div class="tal dont-include ">\
-            <small id="infoEle"class="ff_arial fs11px tac dont-include">Input Aliascss classnames, press enter</small><small id="infoMsg" class="ffcu c_nred fs11px  dont-include"></small>\
-                <textarea id="quickChangeAcssInput" class="bglgtc_nwhite_c_nskyblue dib dont-include h80px w195px oln" placeholder="Input ACSS class names " > </textarea>\
+    <div class="bsbb  w100p dont-include" id="acss-live-editor-content">\
+        <!-- input area  -->\
+        <div class="bsbb  dont-include w75p fl h160px brt1px_s_c_h606060 p10px">\
+            <!-- input -->\
+            <p class="bsbb fs13px m0px p3px dont-include ">\
+            <span class="c_hbbb dont-include ">Click element-or-input id</span> <input type="text" style="" spellcheck="false" id="quickChangeIdInput" class="dont-include w195px b1px-sc_h6060606 br15px bgc_h909090 -fo-oln pl10px" placeholder="input id of element">\
+            </p>\
+                <!-- text-are -->\
+            <div class="bsbb tal dont-include ">\
+            <small id="infoEle"class="c_hbbb ff_arial fs11px tac dont-include">Input classname/s, press enter</small><small id="infoMsg" class=" fs11px  dont-include"></small>\
+                <textarea id="quickChangeAcssInput" class=" dib dont-include bgc_h909090 ff_courier h90px w100p oln c_h333333 fw9" placeholder="Input ACSS class names " spellcheck="false"> </textarea>\
+            </div>\
         </div>\
-    </div>\
-    <div  id="acss-live-editor-footer" class="bgc_hccc h20px bb1px_s_c_00000000002 dont-include">\
-        <div id="selectOption" class="dont-include dib fs11px m0px5px"> \
-                <button class="br0px dont-include"  id="buttonPrev">Prev</button>\
-                <button class="bx0px dont-include"  id="buttonNext">Next</button>\
-                <button class="br0px dont-include"  id="buttonParent">Parent</button>\
-                <button class="br0px dont-include"  id="buttonChild">Child</button>\
+        <!-- Buttons -->
+        <div class="w20p dib fr mr5px dont-include _button-ln _button-ff_verdana _button-w60px _button-bgc_h505050 _button-c_hccc  _button-br50px _button-h-c_ngrey _button-fo-oln _button-fw1  _button-fs9px _button-mb10px">\
+            <button class=" dont-include"  id="buttonPrev">Prev</button>\
+            <button class=" dont-include"  id="buttonNext">Next</button>\
+            <button class=" dont-include"  id="buttonParent">Parent</button>\
+            <button class=" dont-include"  id="buttonChild">Child</button>\
+            <br class="dont-include"><br>\
+            <button id="acssLiveUpadateCopy" class=" dont-include"  id="buttonChild">copy</button>\
         </div>\
+        
     </div>\
-</div>';
+</div>`;
 	
 var box=document.createElement("div");
 box.innerHTML=newinnerHTML;
 document.body.append(box);
 classPrinter.launch(box);
 acssDraggable(document.getElementById("quickChangeBox"));
+
+
 };
 
 init();
