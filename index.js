@@ -34,7 +34,7 @@ let acssCompiler={
 		return statement;
 
 	},
-
+	test:/(html|htm|acss)$/,
 	//cop file in given location
 	dist:function(path){
 		fs.copyFileSync(dist, path);
@@ -65,13 +65,13 @@ let acssCompiler={
 			return classList;
 	},
 	compile:function(file){
-				let compileStatement=null;
+				let compileStatement='';
 				let that=this;
 				const classList=this.extractClassName(file);
 				
 				if(classList.length){
 					
-					compileStatement=`\n/* AliasCSS : These are classnames compiled  from ${path.basename(file)}*/\n\n`,
+					// compileStatement=`\n/* AliasCSS : These are classnames compiled  from ${path.basename(file)}*/\n\n`,
 					classList.forEach(function(e){
 
 						if((statement=statementMaker.main(e))!==false){
@@ -194,7 +194,7 @@ let acssCompiler={
 					if(stats.isDirectory()){
 						this.processFolder(filepath);
 					}else if(stats.isFile()){
-						this.writeToFile(filepath);
+						this.writeToFile(filepath,true);
 					}
 					})
 				})
@@ -204,6 +204,7 @@ let acssCompiler={
 	writeToFile:function(file,append){
 			let compileStatement=null;
 			//For styleSheet .acs
+			if(!path.extname(file).match(this.test)) return ;
 			
 			if(path.extname(file)=='.acss'){
 				console.log('Compiling acss to css: '+ file);
@@ -252,11 +253,11 @@ let acssCompiler={
 					if(err) throw err;
 					
 					if(stats.isDirectory()){
-						this.processFolder(entry);
+						this.processFolder(entry,true);
 						return;
 					}
 					if(stats.isFile()){
-						this.writeToFile(entry);
+						this.writeToFile(entry,true);
 						return;
 					}
 				});
@@ -272,7 +273,7 @@ let acssCompiler={
 			if(err) throw err;
 		
 			if(stats.isDirectory()){
-				this.processFolder(this.input);
+				this.processFolder(this.input,true);
 				return;
 			}
 			if(stats.isFile()){

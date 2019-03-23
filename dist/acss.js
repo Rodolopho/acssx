@@ -134,9 +134,10 @@ atfse:"-webkit-animation-timing-function: step-end;animation-timing-function: st
 atfss:"-webkit-animation-timing-function: step-start;animation-timing-function: step-start",
 au:"all: unset",
 b0:"border:0",
+br0:"border-radius:0",
 bb0:'border-bottom:0',
 bt0:'border-top:0',
-br0:'border-right:0',
+brt0:'border-right:0',
 bl0:'border-left:0',
 baac:"-webkit-column-break-after: avoid-column;page-break-after: avoid-column;break-after: avoid-column",
 
@@ -280,8 +281,9 @@ blwt:"border-left-width: thick",
 blwtn:"border-left-width: thin",
 blwt2:"border-left-width: thin",
 bn:"border:none",
+brn:"border-radius:none",
 bbn:"border-bottom:none",
-brn:"border-right:none",
+brtn:"border-right:none",
 btno:"border-top:none",//conflict with bootrap
 bln:"border-left:none",
 brcn:"border-right-color: none",
@@ -2223,7 +2225,8 @@ xh100p:'max-height:100%',
 /***/ (function(module, exports, __webpack_require__) {
 
 const classPrinter=__webpack_require__(2);
-
+// var staticClassNames=require("./staticClassNames")
+// const statementMaker=require("./statementMaker");
 const acssLiveUpdate=__webpack_require__(7);
 
 window.openAcssLiveEditor=acssLiveUpdate;
@@ -2232,8 +2235,59 @@ window.closeAcssLiveEditor=function(){
     	ele.parentNode.removeChild(ele);
 };
 
-classPrinter.launch();
-window.classPrinter=classPrinter;
+let ACSS={
+compile:function(classname){
+		return this.statementMaker.main(classname);
+	},
+toString:function(){return "ACSS Object";},
+classPrinter:classPrinter,
+
+
+statementMaker:classPrinter.statementMaker,
+extend:function(a,b){
+	if(typeof(a) ==='object' ){
+		for(let key in a){
+			if(this.statementMaker.staticClassNames.hasOwnProperty(key)){
+				console.error(Key +": already  in use for '"+key+":"+this.statementMaker.staticClassNames[key]+"' Try with another classname" );
+			}else{
+				this.statementMaker.staticClassNames[key]=a[key];
+			}
+			
+		}
+	}else{
+		if(a && b){
+			if(this.statementMaker.staticClassNames.hasOwnProperty(a)){
+				console.error(a+": already  in use for '"+a+":"+this.statementMaker.staticClassNames[a]+"' Try with another classname" );
+			}else{
+				this.statementMaker.staticClassNames[a]=b;
+			}
+		}
+	}
+
+},
+liveEditor:acssLiveUpdate,
+// push:false;
+
+// push:function(l){
+// 	if(l){
+// 		this.pushURL=l;
+// 	}else{
+// 		this.pushURL=window.location.origin+"/live-update";
+// 	}
+
+// },
+closeEditor:function(){
+	    var ele=document.getElementById("quickChangeBox");
+	    if(ele) ele.parentNode.removeChild(ele);
+},
+
+};
+
+ACSS.classPrinter.launch();
+if(!window.ACSS){
+	window.ACSS=ACSS;
+}
+// module.exports=ACSS;
 
 
 /***/ }),
@@ -2246,11 +2300,13 @@ window.classPrinter=classPrinter;
  const statementMaker=__webpack_require__(3);
 // -------------------------------------------printer
 //view
-window.compiler=statementMaker;
- window.unValidACSSClassNames=[];
+// window.compiler=statementMaker;
+ let unValidACSSClassNames=[];
  var classPrinter={
- 	//classlist to avoid repetation
+ 	statementMaker:statementMaker,
+ 	//classlist to aoid repetation
  	classListAll:[],
+
 
  	//property an d value for acss stylesheet compiler
  	propertyNValueList:{},
@@ -2278,38 +2334,58 @@ window.compiler=statementMaker;
 		if(element.hasAttribute("class")){
 			//Has a group
 			if(element.getAttribute('acss-group')){
-				var result=statementMaker.gp(element.getAttribute('acss'),element.getAttribute("class").trim());
+				var result=this.statementMaker.gp(element.getAttribute('acss-group'),element.getAttribute("class").trim());
 				if(result){
 						classPrinter.appendToStyleTag(result);
 						// return true;
 					}
 				}
 
+				//---------for live update and testing purpose
+				if(element.getAttribute('acss-group-test')){
+				var result=this.statementMaker.gp(element.getAttribute('acss-group-test'),element.getAttribute("class").trim());
+				var styleTag=document.querySelector("style#"+element.getAttribute('acss-group-test'));
+				if(result){
+					if(styleTag){
+						styleTag.innerHTML="";
+						
+						var createNewgroup=document.createTextNode(result);
+      						styleTag.appendChild(createNewgroup);
+						// return true;
+					}else{
+						 styleTag=document.createElement("style");
+						styleTag.id=element.getAttribute('acss-group-test');
+						document.getElementsByTagName("head")[0].appendChild(styleTag);
+							var createNewgroup=document.createTextNode(result);
+      						styleTag.appendChild(createNewgroup);
+					}
+				}
+			}
+				//-----------------------end of for live update
 			//get class and trim out whitespaces
 			var tmpClassList=element.getAttribute("class").trim();
 			//make array of classname out of string
 			if(tmpClassList.length){
 				tmpClassList=tmpClassList.split(/\s+/);
-
+				let _this=this;
 			//looping class
 			tmpClassList.forEach(function(eachClass){
 					//escape reppeated classname
 
-					if(classPrinter.classListAll.indexOf(eachClass)==-1){
+					if(classPrinter.classListAll.indexOf(eachClass)==-1 && unValidACSSClassNames.indexOf(eachClass)==-1){
 						//add to classlist for refrerence
 						classPrinter.classListAll.push(eachClass);
 						
 						// var result=compiler.main(eachClass);
-						 var result=statementMaker.main(eachClass);
+						 var result=_this.statementMaker.main(eachClass);
 						 // console.log(result);
 
 						if(result){
 								classPrinter.appendToStyleTag(result);
 						}else{
 								//not a valid ACSS clasNames
-								if(unValidACSSClassNames.indexOf(eachClass)==-1){
-									unValidACSSClassNames.push(eachClass);
-								}
+								unValidACSSClassNames.push(eachClass);
+								
 
 							}
 					}
@@ -2332,7 +2408,7 @@ window.compiler=statementMaker;
 						result=_this.propertyNValueList[m];
 						return result 
 					}else{
-						result=statementMaker.getPropertyAndValue(m.trim());
+						result=_this.statementMaker.getPropertyAndValue(m.trim());
 						if(result){
 							_this.propertyNValueList[m]=result;
 							return result 
@@ -2432,12 +2508,13 @@ module.exports=classPrinter;
 
 //imports
 // var aliasProperty=require('./propertyAlias');
-var staticClassNames=__webpack_require__(0)
+ var staticClassNames=__webpack_require__(0)
 // var prefixAlias=require("./devicePseduoBrowserEvent");
 var prefixAlias=__webpack_require__(4);
 var compiler=__webpack_require__(5);
 
-var statementMaker={
+ statementMaker= {
+ 	staticClassNames:staticClassNames,
 	//for lite Version
 	allStaticClassStatements:function(){
 		let statements="/*Acss Static Classname/*";
@@ -2543,7 +2620,7 @@ var statementMaker={
 	},//end of Handle suffix
 	
 
-	main:function(classname,as){
+	main:function(classname,as,bool){
 		this.statement=as?as:classname;
 		if(classname.match(prefixAlias.deviceAlias.match)){
 			let devicePrefix=classname.match(prefixAlias.deviceAlias.match)[0];
@@ -2560,10 +2637,19 @@ var statementMaker={
 		 //this.hasBeforePrefix=pseduohandler[1];
     // Finally Handle Proeperty and Value
 							
-			var propertyNValue=this.getPropertyAndValue(classname.replace(/^[_-]/, ""));										 
+			var propertyNValue=this.getPropertyAndValue(classname.replace(/^[_-]/, ""));	
+
+			if(bool===true){
+				return [this.hasDevice,pseduohandler[1],propertyNValue]
+			}									 
 
    	//return statement to class printer or caller
 	    if(propertyNValue){
+	    	//for group
+	    	if(bool===true){
+				return [this.hasDevice,pseduohandler[1],propertyNValue]
+			}
+			//--END for Group
 	    	this.statement="."+this.statement+pseduohandler[1]+" { "+propertyNValue+"; } ";
 	    	if(this.hasDevice){
 	    		return prefixAlias.deviceHandler(this.hasDevice, this.statement);
@@ -2578,25 +2664,40 @@ var statementMaker={
 },//end of main function
 group:function(classname,as){
 	if(!classname && !as) return false;
-		let statement="";
+		let statement="\n";
+		let statementPseudo="";
+
 		
     var list=classname.trim().split(/\s+/);
 
-    
     var _this=this;
     list.forEach(function(each){
 
-    	var result=_this.main(each,as);
-    	if(result){
-    		statement+=result+"\n";
+    	var result=_this.main(each,as,true);
+    	if(result[0] || result[1]){
+    		let s="."+as+result[1]+"{"+result[2]+"; } ";
+    		if(result[0]){
+    			statementPseudo+=prefixAlias.deviceHandler(result[0], s)+"\n";
+    			// statementPseudo+="."+as+pseduohandler[1]+" { "+propertyNValue+"; } ";
+    		}else{
+    			statementPseudo+=s+"\n";
+    		}
+    		
+
+    	}else{
+    		if(result[2]){
+    			statement+=result[2]+";\n";
+    		}
     	}
     	
+    	
     });
-    return statement;
+    return "."+as+"{"+statement+"}\n"+statementPseudo;
 							
 },//end of group function
 
 }//end of statementMaker;
+
 
  module.exports=statementMaker;
 
@@ -2872,11 +2973,6 @@ exports.matchAndCall;
 
 //imports
 var aliasProperty=__webpack_require__(6);
-var staticClassNames=__webpack_require__(0)
-// var devicePesduoBrowserEventAlias=require("./devicePseduoBrowserEvent");
-
-//locals
-
 var compiler={
 	
 		//-----------------Function Factory-----------------------------------------------------------------------------
@@ -3660,7 +3756,7 @@ function acssInputHandler(){
                     if(code==13) e.preventDefault();
                     if(acssInputField.value.trim()){
                             currentElement.setAttribute("class",acssInputField.value.trim());
-                    		classPrinter.main(currentElement);
+                    		ACSS.classPrinter.main(currentElement);
                     
                     }
                 }
@@ -3672,6 +3768,7 @@ function buttonRole(){
         var buttonNext=document.getElementById("buttonNext");
         var buttonChild=document.getElementById("buttonChild"); 
         var buttonCopy=document.getElementById('acssLiveUpadateCopy');
+        var buttonPush=document.getElementById('acssPush');
   
        
         nextElement=function(){
@@ -3763,11 +3860,34 @@ function buttonRole(){
                         title.style.color="initial";
                     title.innerText="Acss Live Update 1.0.3";
                     clearTimeout(st);
-                    },3000)
+                    },1500)
                 };
                 textarea.parentNode.removeChild(textarea);
                 }
             };
+
+            buttonPush.onclick=function(){
+                if(!ACSS.pushURL) return false;
+                let content=document.getElementById("styleAlias").innerText;
+                var xhttp = new XMLHttpRequest();
+                  xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                            console.log("Connection successfull");
+                        let title=document.getElementById('acss-title');
+                        title.style.color="green";
+                        title.innerText="Pushed and saved!"
+
+                        let st=setTimeout(function(){
+                            title.style.color="initial";
+                        title.innerText="Acss Live Update 1.0.3";
+                        clearTimeout(st);
+                        },3000)
+                     
+                    }
+                  };
+                  xhttp.open("POST", ACSS.pushURL, true);
+                  xhttp.send(content);
+            }
              
                
   
@@ -3922,7 +4042,7 @@ var newinnerHTML=`<div sid="alias-css-live-editor" id="quickChangeBox" class="bs
     </div>\
     <div class="bsbb  w100p dont-include" id="acss-live-editor-content">\
         <!-- input area  -->\
-        <div class="bsbb  dont-include w75p fl h160px brt1px_s_c_h606060 p10px">\
+        <div class="bsbb  dont-include w75p fl h160px brt1px_s_c_h606060 p10px pt0px">\
             <!-- input -->\
             <p class="bsbb fs13px m0px p3px dont-include ">\
             <span class="c_hbbb dont-include ">Click element-or-input id</span> <input type="text" style="" spellcheck="false" id="quickChangeIdInput" class="dont-include w195px b1px-sc_h6060606 br15px bgc_h909090 -fo-oln pl10px" placeholder="input id of element">\
@@ -3934,13 +4054,14 @@ var newinnerHTML=`<div sid="alias-css-live-editor" id="quickChangeBox" class="bs
             </div>\
         </div>\
         <!-- Buttons -->
-        <div class="w20p dib fr mr5px dont-include _button-ln _button-ff_verdana _button-w60px _button-bgc_h505050 _button-c_hccc  _button-br50px _button-h-c_ngrey _button-fo-oln _button-fw1  _button-fs9px _button-mb10px">\
+        <div class="w20p dib fr mr5px dont-include _button-ln _button-ff_verdana _button-w60px _button-bgc_h505050 _button-c_hccc  _button-br50px _button-h-c_ngrey _button-fo-oln _button-fw1  _button-fs9px _button-mb8px">\
             <button class=" dont-include"  id="buttonPrev">Prev</button>\
             <button class=" dont-include"  id="buttonNext">Next</button>\
             <button class=" dont-include"  id="buttonParent">Parent</button>\
             <button class=" dont-include"  id="buttonChild">Child</button>\
-            <br class="dont-include"><br>\
-            <button id="acssLiveUpadateCopy" class=" dont-include"  id="buttonChild">copy</button>\
+            <hr class=" mt0px mb10px bt1px_s_c_h6060606 dont-include">\
+            <button id="acssLiveUpadateCopy" class=" dont-include" >copy</button>\
+            <button id="acssPush" class="fs7px dont-include"  >&uarr;push</button>\
         </div>\
         
     </div>\
@@ -3949,7 +4070,7 @@ var newinnerHTML=`<div sid="alias-css-live-editor" id="quickChangeBox" class="bs
 var box=document.createElement("div");
 box.innerHTML=newinnerHTML;
 document.body.append(box);
-classPrinter.launch(box);
+ACSS.classPrinter.launch(box);
 acssDraggable(document.getElementById("quickChangeBox"));
 
 

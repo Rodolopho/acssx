@@ -1,12 +1,13 @@
 {
   "name": "acssx",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Extended version of ACSS, a css post processor",
   "main": "index.js",
   "scripts": {
     "test": "mocha||true",
     "build": "webpack",
-    "watch": "webpack  --watch"
+    "watch": "webpack  --watch",
+    "serve": "webpack-dev-server --open"
     
   },
   "repository": {

@@ -4,11 +4,13 @@
  const statementMaker=require("./statementMaker");
 // -------------------------------------------printer
 //view
-window.compiler=statementMaker;
- window.unValidACSSClassNames=[];
+// window.compiler=statementMaker;
+ let unValidACSSClassNames=[];
  var classPrinter={
- 	//classlist to avoid repetation
+ 	statementMaker:statementMaker,
+ 	//classlist to aoid repetation
  	classListAll:[],
+
 
  	//property an d value for acss stylesheet compiler
  	propertyNValueList:{},
@@ -36,38 +38,58 @@ window.compiler=statementMaker;
 		if(element.hasAttribute("class")){
 			//Has a group
 			if(element.getAttribute('acss-group')){
-				var result=statementMaker.gp(element.getAttribute('acss'),element.getAttribute("class").trim());
+				var result=this.statementMaker.gp(element.getAttribute('acss-group'),element.getAttribute("class").trim());
 				if(result){
 						classPrinter.appendToStyleTag(result);
 						// return true;
 					}
 				}
 
+				//---------for live update and testing purpose
+				if(element.getAttribute('acss-group-test')){
+				var result=this.statementMaker.gp(element.getAttribute('acss-group-test'),element.getAttribute("class").trim());
+				var styleTag=document.querySelector("style#"+element.getAttribute('acss-group-test'));
+				if(result){
+					if(styleTag){
+						styleTag.innerHTML="";
+						
+						var createNewgroup=document.createTextNode(result);
+      						styleTag.appendChild(createNewgroup);
+						// return true;
+					}else{
+						 styleTag=document.createElement("style");
+						styleTag.id=element.getAttribute('acss-group-test');
+						document.getElementsByTagName("head")[0].appendChild(styleTag);
+							var createNewgroup=document.createTextNode(result);
+      						styleTag.appendChild(createNewgroup);
+					}
+				}
+			}
+				//-----------------------end of for live update
 			//get class and trim out whitespaces
 			var tmpClassList=element.getAttribute("class").trim();
 			//make array of classname out of string
 			if(tmpClassList.length){
 				tmpClassList=tmpClassList.split(/\s+/);
-
+				let _this=this;
 			//looping class
 			tmpClassList.forEach(function(eachClass){
 					//escape reppeated classname
 
-					if(classPrinter.classListAll.indexOf(eachClass)==-1){
+					if(classPrinter.classListAll.indexOf(eachClass)==-1 && unValidACSSClassNames.indexOf(eachClass)==-1){
 						//add to classlist for refrerence
 						classPrinter.classListAll.push(eachClass);
 						
 						// var result=compiler.main(eachClass);
-						 var result=statementMaker.main(eachClass);
+						 var result=_this.statementMaker.main(eachClass);
 						 // console.log(result);
 
 						if(result){
 								classPrinter.appendToStyleTag(result);
 						}else{
 								//not a valid ACSS clasNames
-								if(unValidACSSClassNames.indexOf(eachClass)==-1){
-									unValidACSSClassNames.push(eachClass);
-								}
+								unValidACSSClassNames.push(eachClass);
+								
 
 							}
 					}
@@ -90,7 +112,7 @@ window.compiler=statementMaker;
 						result=_this.propertyNValueList[m];
 						return result 
 					}else{
-						result=statementMaker.getPropertyAndValue(m.trim());
+						result=_this.statementMaker.getPropertyAndValue(m.trim());
 						if(result){
 							_this.propertyNValueList[m]=result;
 							return result 

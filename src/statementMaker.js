@@ -1,12 +1,13 @@
 
 //imports
 // var aliasProperty=require('./propertyAlias');
-var staticClassNames=require("./staticClassNames")
+ var staticClassNames=require("./staticClassNames")
 // var prefixAlias=require("./devicePseduoBrowserEvent");
 var prefixAlias=require("./devicePseduoElementify.js");
 var compiler=require('./compilePropertyAndValue.js');
 
-var statementMaker={
+ statementMaker= {
+ 	staticClassNames:staticClassNames,
 	//for lite Version
 	allStaticClassStatements:function(){
 		let statements="/*Acss Static Classname/*";
@@ -112,7 +113,7 @@ var statementMaker={
 	},//end of Handle suffix
 	
 
-	main:function(classname,as){
+	main:function(classname,as,bool){
 		this.statement=as?as:classname;
 		if(classname.match(prefixAlias.deviceAlias.match)){
 			let devicePrefix=classname.match(prefixAlias.deviceAlias.match)[0];
@@ -129,10 +130,19 @@ var statementMaker={
 		 //this.hasBeforePrefix=pseduohandler[1];
     // Finally Handle Proeperty and Value
 							
-			var propertyNValue=this.getPropertyAndValue(classname.replace(/^[_-]/, ""));										 
+			var propertyNValue=this.getPropertyAndValue(classname.replace(/^[_-]/, ""));	
+
+			if(bool===true){
+				return [this.hasDevice,pseduohandler[1],propertyNValue]
+			}									 
 
    	//return statement to class printer or caller
 	    if(propertyNValue){
+	    	//for group
+	    	if(bool===true){
+				return [this.hasDevice,pseduohandler[1],propertyNValue]
+			}
+			//--END for Group
 	    	this.statement="."+this.statement+pseduohandler[1]+" { "+propertyNValue+"; } ";
 	    	if(this.hasDevice){
 	    		return prefixAlias.deviceHandler(this.hasDevice, this.statement);
@@ -147,25 +157,40 @@ var statementMaker={
 },//end of main function
 group:function(classname,as){
 	if(!classname && !as) return false;
-		let statement="";
+		let statement="\n";
+		let statementPseudo="";
+
 		
     var list=classname.trim().split(/\s+/);
 
-    
     var _this=this;
     list.forEach(function(each){
 
-    	var result=_this.main(each,as);
-    	if(result){
-    		statement+=result+"\n";
+    	var result=_this.main(each,as,true);
+    	if(result[0] || result[1]){
+    		let s="."+as+result[1]+"{"+result[2]+"; } ";
+    		if(result[0]){
+    			statementPseudo+=prefixAlias.deviceHandler(result[0], s)+"\n";
+    			// statementPseudo+="."+as+pseduohandler[1]+" { "+propertyNValue+"; } ";
+    		}else{
+    			statementPseudo+=s+"\n";
+    		}
+    		
+
+    	}else{
+    		if(result[2]){
+    			statement+=result[2]+";\n";
+    		}
     	}
     	
+    	
     });
-    return statement;
+    return "."+as+"{"+statement+"}\n"+statementPseudo;
 							
 },//end of group function
 
 }//end of statementMaker;
+
 
  module.exports=statementMaker;
 

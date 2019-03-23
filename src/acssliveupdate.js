@@ -57,7 +57,7 @@ function acssInputHandler(){
                     if(code==13) e.preventDefault();
                     if(acssInputField.value.trim()){
                             currentElement.setAttribute("class",acssInputField.value.trim());
-                    		classPrinter.main(currentElement);
+                    		ACSS.classPrinter.main(currentElement);
                     
                     }
                 }
@@ -69,6 +69,7 @@ function buttonRole(){
         var buttonNext=document.getElementById("buttonNext");
         var buttonChild=document.getElementById("buttonChild"); 
         var buttonCopy=document.getElementById('acssLiveUpadateCopy');
+        var buttonPush=document.getElementById('acssPush');
   
        
         nextElement=function(){
@@ -160,11 +161,34 @@ function buttonRole(){
                         title.style.color="initial";
                     title.innerText="Acss Live Update 1.0.3";
                     clearTimeout(st);
-                    },3000)
+                    },1500)
                 };
                 textarea.parentNode.removeChild(textarea);
                 }
             };
+
+            buttonPush.onclick=function(){
+                if(!ACSS.pushURL) return false;
+                let content=document.getElementById("styleAlias").innerText;
+                var xhttp = new XMLHttpRequest();
+                  xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                            console.log("Connection successfull");
+                        let title=document.getElementById('acss-title');
+                        title.style.color="green";
+                        title.innerText="Pushed and saved!"
+
+                        let st=setTimeout(function(){
+                            title.style.color="initial";
+                        title.innerText="Acss Live Update 1.0.3";
+                        clearTimeout(st);
+                        },3000)
+                     
+                    }
+                  };
+                  xhttp.open("POST", ACSS.pushURL, true);
+                  xhttp.send(content);
+            }
              
                
   
@@ -319,7 +343,7 @@ var newinnerHTML=`<div sid="alias-css-live-editor" id="quickChangeBox" class="bs
     </div>\
     <div class="bsbb  w100p dont-include" id="acss-live-editor-content">\
         <!-- input area  -->\
-        <div class="bsbb  dont-include w75p fl h160px brt1px_s_c_h606060 p10px">\
+        <div class="bsbb  dont-include w75p fl h160px brt1px_s_c_h606060 p10px pt0px">\
             <!-- input -->\
             <p class="bsbb fs13px m0px p3px dont-include ">\
             <span class="c_hbbb dont-include ">Click element-or-input id</span> <input type="text" style="" spellcheck="false" id="quickChangeIdInput" class="dont-include w195px b1px-sc_h6060606 br15px bgc_h909090 -fo-oln pl10px" placeholder="input id of element">\
@@ -331,13 +355,14 @@ var newinnerHTML=`<div sid="alias-css-live-editor" id="quickChangeBox" class="bs
             </div>\
         </div>\
         <!-- Buttons -->
-        <div class="w20p dib fr mr5px dont-include _button-ln _button-ff_verdana _button-w60px _button-bgc_h505050 _button-c_hccc  _button-br50px _button-h-c_ngrey _button-fo-oln _button-fw1  _button-fs9px _button-mb10px">\
+        <div class="w20p dib fr mr5px dont-include _button-ln _button-ff_verdana _button-w60px _button-bgc_h505050 _button-c_hccc  _button-br50px _button-h-c_ngrey _button-fo-oln _button-fw1  _button-fs9px _button-mb8px">\
             <button class=" dont-include"  id="buttonPrev">Prev</button>\
             <button class=" dont-include"  id="buttonNext">Next</button>\
             <button class=" dont-include"  id="buttonParent">Parent</button>\
             <button class=" dont-include"  id="buttonChild">Child</button>\
-            <br class="dont-include"><br>\
-            <button id="acssLiveUpadateCopy" class=" dont-include"  id="buttonChild">copy</button>\
+            <hr class=" mt0px mb10px bt1px_s_c_h6060606 dont-include">\
+            <button id="acssLiveUpadateCopy" class=" dont-include" >copy</button>\
+            <button id="acssPush" class="fs7px dont-include"  >&uarr;push</button>\
         </div>\
         
     </div>\
@@ -346,7 +371,7 @@ var newinnerHTML=`<div sid="alias-css-live-editor" id="quickChangeBox" class="bs
 var box=document.createElement("div");
 box.innerHTML=newinnerHTML;
 document.body.append(box);
-classPrinter.launch(box);
+ACSS.classPrinter.launch(box);
 acssDraggable(document.getElementById("quickChangeBox"));
 
 

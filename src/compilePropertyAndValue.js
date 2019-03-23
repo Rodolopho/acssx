@@ -1,11 +1,6 @@
 
 //imports
 var aliasProperty=require('./propertyAlias');
-var staticClassNames=require("./staticClassNames")
-// var devicePesduoBrowserEventAlias=require("./devicePseduoBrowserEvent");
-
-//locals
-
 var compiler={
 	
 		//-----------------Function Factory-----------------------------------------------------------------------------
